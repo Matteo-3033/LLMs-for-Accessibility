@@ -11,7 +11,7 @@ import SwiftUI
 struct ProgettoApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ARViewControllerRepresentable()
         }
     }
 }
