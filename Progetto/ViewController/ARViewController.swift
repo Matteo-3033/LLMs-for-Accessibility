@@ -15,6 +15,8 @@ class ARViewController: UIViewController {
     @IBOutlet weak var addObject: UIButton!
     @IBOutlet weak var settings: UIButton!
     
+    var selectedObject: ARObject?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -23,8 +25,10 @@ class ARViewController: UIViewController {
     @IBAction func didTapOnAddObject(_ sender: Any) {
         print("didTapOnAddObject")
         
-        var selectObjectMenu = UIHostingController(rootView: SelectObjectMenu { model in
-            // TODO: add object to scene
+        var selectObjectMenu: UIHostingController<SelectObjectMenu>!
+        selectObjectMenu = UIHostingController(rootView: SelectObjectMenu { obj in
+            selectObjectMenu.dismiss(animated: true)
+            self.selectedObject = obj
         })
         selectObjectMenu.modalPresentationStyle = .pageSheet
         selectObjectMenu.isModalInPresentation = false
@@ -36,7 +40,7 @@ class ARViewController: UIViewController {
     @IBAction func didTapOnSettings(_ sender: Any) {
         print("didTapOnSettings")
         
-        var settingsMenu = UIHostingController(rootView: SettingsMenu())
+        let settingsMenu = UIHostingController(rootView: SettingsMenu())
         settingsMenu.modalPresentationStyle = .pageSheet
         settingsMenu.isModalInPresentation = false
         settingsMenu.sheetPresentationController?.detents = [.large()]

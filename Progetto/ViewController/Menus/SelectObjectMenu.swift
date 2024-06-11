@@ -8,12 +8,15 @@
 import SwiftUI
 
 struct SelectObjectMenu : View {
-    
-    var onModelSelectedCallback: (ARObject) -> Void
+    var onObjectSelectedCallback: (ARObject) -> Void
     
     var body: some View {
         VStack {
-            
+            List(ARObject.getObjects()) { obj in
+                Button(action: { onObjectSelectedCallback(obj)}) {
+                    Text(obj.modelName)
+                }
+            }.navigationTitle("Objects")
         }
     }
 }

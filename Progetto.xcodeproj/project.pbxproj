@@ -15,6 +15,68 @@
 		AF7D85D32C18730200789739 /* SelectObjectMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7D85D22C18730200789739 /* SelectObjectMenu.swift */; };
 		AF7D85D52C18749700789739 /* ARObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7D85D42C18749700789739 /* ARObject.swift */; };
 		AF7D85D72C18756200789739 /* SettingsMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7D85D62C18756200789739 /* SettingsMenu.swift */; };
+		AF7D85DE2C1877E000789739 /* chair_swan.usdz in Resources */ = {isa = PBXBuildFile; fileRef = AF7D85DC2C1877E000789739 /* chair_swan.usdz */; };
+		AF7D85DF2C1877E000789739 /* tv_retro.usdz in Resources */ = {isa = PBXBuildFile; fileRef = AF7D85DD2C1877E000789739 /* tv_retro.usdz */; };
+		AF7D85F42C18813000789739 /* tv_retro.usdz in Resources */ = {isa = PBXBuildFile; fileRef = AF7D85E02C18813000789739 /* tv_retro.usdz */; };
+		AF7D85F52C18813000789739 /* chair_swan copy 5.usdz in Resources */ = {isa = PBXBuildFile; fileRef = AF7D85E12C18813000789739 /* chair_swan copy 5.usdz */; };
+		AF7D85F62C18813000789739 /* tv_retro copy 3.usdz in Resources */ = {isa = PBXBuildFile; fileRef = AF7D85E22C18813000789739 /* tv_retro copy 3.usdz */; };
+		AF7D85F72C18813000789739 /* chair_swan copy 9.usdz in Resources */ = {isa = PBXBuildFile; fileRef = AF7D85E32C18813000789739 /* chair_swan copy 9.usdz */; };
+		AF7D85F82C18813000789739 /* chair_swan copy 6.usdz in Resources */ = {isa = PBXBuildFile; fileRef = AF7D85E42C18813000789739 /* chair_swan copy 6.usdz */; };
+		AF7D85F92C18813000789739 /* chair_swan.usdz in Resources */ = {isa = PBXBuildFile; fileRef = AF7D85E52C18813000789739 /* chair_swan.usdz */; };
+		AF7D85FA2C18813000789739 /* tv_retro copy 9.usdz in Resources */ = {isa = PBXBuildFile; fileRef = AF7D85E62C18813000789739 /* tv_retro copy 9.usdz */; };
+		AF7D85FB2C18813000789739 /* chair_swan copy 8.usdz in Resources */ = {isa = PBXBuildFile; fileRef = AF7D85E72C18813000789739 /* chair_swan copy 8.usdz */; };
+		AF7D85FC2C18813000789739 /* chair_swan copy.usdz in Resources */ = {isa = PBXBuildFile; fileRef = AF7D85E82C18813000789739 /* chair_swan copy.usdz */; };
+		AF7D85FD2C18813000789739 /* chair_swan copy 2.usdz in Resources */ = {isa = PBXBuildFile; fileRef = AF7D85E92C18813000789739 /* chair_swan copy 2.usdz */; };
+		AF7D85FE2C18813000789739 /* tv_retro copy 4.usdz in Resources */ = {isa = PBXBuildFile; fileRef = AF7D85EA2C18813000789739 /* tv_retro copy 4.usdz */; };
+		AF7D85FF2C18813000789739 /* tv_retro copy 8.usdz in Resources */ = {isa = PBXBuildFile; fileRef = AF7D85EB2C18813000789739 /* tv_retro copy 8.usdz */; };
+		AF7D86002C18813000789739 /* chair_swan copy 3.usdz in Resources */ = {isa = PBXBuildFile; fileRef = AF7D85EC2C18813000789739 /* chair_swan copy 3.usdz */; };
+		AF7D86012C18813000789739 /* tv_retro copy 7.usdz in Resources */ = {isa = PBXBuildFile; fileRef = AF7D85ED2C18813000789739 /* tv_retro copy 7.usdz */; };
+		AF7D86022C18813000789739 /* tv_retro copy 5.usdz in Resources */ = {isa = PBXBuildFile; fileRef = AF7D85EE2C18813000789739 /* tv_retro copy 5.usdz */; };
+		AF7D86032C18813000789739 /* tv_retro copy 6.usdz in Resources */ = {isa = PBXBuildFile; fileRef = AF7D85EF2C18813000789739 /* tv_retro copy 6.usdz */; };
+		AF7D86042C18813000789739 /* chair_swan copy 4.usdz in Resources */ = {isa = PBXBuildFile; fileRef = AF7D85F02C18813000789739 /* chair_swan copy 4.usdz */; };
+		AF7D86052C18813000789739 /* tv_retro copy 2.usdz in Resources */ = {isa = PBXBuildFile; fileRef = AF7D85F12C18813000789739 /* tv_retro copy 2.usdz */; };
+		AF7D86062C18813000789739 /* chair_swan copy 7.usdz in Resources */ = {isa = PBXBuildFile; fileRef = AF7D85F22C18813000789739 /* chair_swan copy 7.usdz */; };
+		AF7D86072C18813000789739 /* tv_retro copy.usdz in Resources */ = {isa = PBXBuildFile; fileRef = AF7D85F32C18813000789739 /* tv_retro copy.usdz */; };
+		AF7D86302C18815700789739 /* tv_retro copy 13.usdz in Resources */ = {isa = PBXBuildFile; fileRef = AF7D86082C18815600789739 /* tv_retro copy 13.usdz */; };
+		AF7D86312C18815700789739 /* tv_retro copy 2.usdz in Resources */ = {isa = PBXBuildFile; fileRef = AF7D86092C18815600789739 /* tv_retro copy 2.usdz */; };
+		AF7D86322C18815700789739 /* chair_swan copy 4.usdz in Resources */ = {isa = PBXBuildFile; fileRef = AF7D860A2C18815600789739 /* chair_swan copy 4.usdz */; };
+		AF7D86332C18815700789739 /* tv_retro copy 14.usdz in Resources */ = {isa = PBXBuildFile; fileRef = AF7D860B2C18815600789739 /* tv_retro copy 14.usdz */; };
+		AF7D86342C18815700789739 /* tv_retro copy 5.usdz in Resources */ = {isa = PBXBuildFile; fileRef = AF7D860C2C18815600789739 /* tv_retro copy 5.usdz */; };
+		AF7D86352C18815700789739 /* chair_swan copy 3.usdz in Resources */ = {isa = PBXBuildFile; fileRef = AF7D860D2C18815600789739 /* chair_swan copy 3.usdz */; };
+		AF7D86362C18815700789739 /* tv_retro copy 15.usdz in Resources */ = {isa = PBXBuildFile; fileRef = AF7D860E2C18815600789739 /* tv_retro copy 15.usdz */; };
+		AF7D86372C18815700789739 /* tv_retro copy 17.usdz in Resources */ = {isa = PBXBuildFile; fileRef = AF7D860F2C18815600789739 /* tv_retro copy 17.usdz */; };
+		AF7D86382C18815700789739 /* chair_swan copy 10.usdz in Resources */ = {isa = PBXBuildFile; fileRef = AF7D86102C18815600789739 /* chair_swan copy 10.usdz */; };
+		AF7D86392C18815700789739 /* chair_swan copy 15.usdz in Resources */ = {isa = PBXBuildFile; fileRef = AF7D86112C18815600789739 /* chair_swan copy 15.usdz */; };
+		AF7D863A2C18815700789739 /* chair_swan copy 9.usdz in Resources */ = {isa = PBXBuildFile; fileRef = AF7D86122C18815600789739 /* chair_swan copy 9.usdz */; };
+		AF7D863B2C18815700789739 /* chair_swan copy 16.usdz in Resources */ = {isa = PBXBuildFile; fileRef = AF7D86132C18815600789739 /* chair_swan copy 16.usdz */; };
+		AF7D863C2C18815700789739 /* tv_retro copy 10.usdz in Resources */ = {isa = PBXBuildFile; fileRef = AF7D86142C18815600789739 /* tv_retro copy 10.usdz */; };
+		AF7D863D2C18815700789739 /* chair_swan copy 14.usdz in Resources */ = {isa = PBXBuildFile; fileRef = AF7D86152C18815600789739 /* chair_swan copy 14.usdz */; };
+		AF7D863E2C18815700789739 /* tv_retro copy 16.usdz in Resources */ = {isa = PBXBuildFile; fileRef = AF7D86162C18815600789739 /* tv_retro copy 16.usdz */; };
+		AF7D863F2C18815700789739 /* chair_swan copy 2.usdz in Resources */ = {isa = PBXBuildFile; fileRef = AF7D86172C18815600789739 /* chair_swan copy 2.usdz */; };
+		AF7D86402C18815700789739 /* tv_retro copy 7.usdz in Resources */ = {isa = PBXBuildFile; fileRef = AF7D86182C18815700789739 /* tv_retro copy 7.usdz */; };
+		AF7D86412C18815700789739 /* tv_retro copy 8.usdz in Resources */ = {isa = PBXBuildFile; fileRef = AF7D86192C18815700789739 /* tv_retro copy 8.usdz */; };
+		AF7D86422C18815700789739 /* chair_swan copy 19.usdz in Resources */ = {isa = PBXBuildFile; fileRef = AF7D861A2C18815700789739 /* chair_swan copy 19.usdz */; };
+		AF7D86432C18815700789739 /* chair_swan copy 13.usdz in Resources */ = {isa = PBXBuildFile; fileRef = AF7D861B2C18815700789739 /* chair_swan copy 13.usdz */; };
+		AF7D86442C18815700789739 /* chair_swan copy 17.usdz in Resources */ = {isa = PBXBuildFile; fileRef = AF7D861C2C18815700789739 /* chair_swan copy 17.usdz */; };
+		AF7D86452C18815700789739 /* chair_swan copy 5.usdz in Resources */ = {isa = PBXBuildFile; fileRef = AF7D861D2C18815700789739 /* chair_swan copy 5.usdz */; };
+		AF7D86462C18815700789739 /* tv_retro copy 4.usdz in Resources */ = {isa = PBXBuildFile; fileRef = AF7D861E2C18815700789739 /* tv_retro copy 4.usdz */; };
+		AF7D86472C18815700789739 /* chair_swan copy.usdz in Resources */ = {isa = PBXBuildFile; fileRef = AF7D861F2C18815700789739 /* chair_swan copy.usdz */; };
+		AF7D86482C18815700789739 /* chair_swan.usdz in Resources */ = {isa = PBXBuildFile; fileRef = AF7D86202C18815700789739 /* chair_swan.usdz */; };
+		AF7D86492C18815700789739 /* chair_swan copy 7.usdz in Resources */ = {isa = PBXBuildFile; fileRef = AF7D86212C18815700789739 /* chair_swan copy 7.usdz */; };
+		AF7D864A2C18815700789739 /* tv_retro copy 9.usdz in Resources */ = {isa = PBXBuildFile; fileRef = AF7D86222C18815700789739 /* tv_retro copy 9.usdz */; };
+		AF7D864B2C18815700789739 /* tv_retro copy 3.usdz in Resources */ = {isa = PBXBuildFile; fileRef = AF7D86232C18815700789739 /* tv_retro copy 3.usdz */; };
+		AF7D864C2C18815700789739 /* chair_swan copy 6.usdz in Resources */ = {isa = PBXBuildFile; fileRef = AF7D86242C18815700789739 /* chair_swan copy 6.usdz */; };
+		AF7D864D2C18815700789739 /* tv_retro copy.usdz in Resources */ = {isa = PBXBuildFile; fileRef = AF7D86252C18815700789739 /* tv_retro copy.usdz */; };
+		AF7D864E2C18815700789739 /* chair_swan copy 8.usdz in Resources */ = {isa = PBXBuildFile; fileRef = AF7D86262C18815700789739 /* chair_swan copy 8.usdz */; };
+		AF7D864F2C18815700789739 /* chair_swan copy 12.usdz in Resources */ = {isa = PBXBuildFile; fileRef = AF7D86272C18815700789739 /* chair_swan copy 12.usdz */; };
+		AF7D86502C18815700789739 /* tv_retro copy 11.usdz in Resources */ = {isa = PBXBuildFile; fileRef = AF7D86282C18815700789739 /* tv_retro copy 11.usdz */; };
+		AF7D86512C18815700789739 /* tv_retro copy 18.usdz in Resources */ = {isa = PBXBuildFile; fileRef = AF7D86292C18815700789739 /* tv_retro copy 18.usdz */; };
+		AF7D86522C18815700789739 /* tv_retro.usdz in Resources */ = {isa = PBXBuildFile; fileRef = AF7D862A2C18815700789739 /* tv_retro.usdz */; };
+		AF7D86532C18815700789739 /* chair_swan copy 11.usdz in Resources */ = {isa = PBXBuildFile; fileRef = AF7D862B2C18815700789739 /* chair_swan copy 11.usdz */; };
+		AF7D86542C18815700789739 /* tv_retro copy 19.usdz in Resources */ = {isa = PBXBuildFile; fileRef = AF7D862C2C18815700789739 /* tv_retro copy 19.usdz */; };
+		AF7D86552C18815700789739 /* chair_swan copy 18.usdz in Resources */ = {isa = PBXBuildFile; fileRef = AF7D862D2C18815700789739 /* chair_swan copy 18.usdz */; };
+		AF7D86562C18815700789739 /* tv_retro copy 6.usdz in Resources */ = {isa = PBXBuildFile; fileRef = AF7D862E2C18815700789739 /* tv_retro copy 6.usdz */; };
+		AF7D86572C18815700789739 /* tv_retro copy 12.usdz in Resources */ = {isa = PBXBuildFile; fileRef = AF7D862F2C18815700789739 /* tv_retro copy 12.usdz */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +89,68 @@
 		AF7D85D22C18730200789739 /* SelectObjectMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectObjectMenu.swift; sourceTree = "<group>"; };
 		AF7D85D42C18749700789739 /* ARObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARObject.swift; sourceTree = "<group>"; };
 		AF7D85D62C18756200789739 /* SettingsMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsMenu.swift; sourceTree = "<group>"; };
+		AF7D85DC2C1877E000789739 /* chair_swan.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = chair_swan.usdz; sourceTree = "<group>"; };
+		AF7D85DD2C1877E000789739 /* tv_retro.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = tv_retro.usdz; sourceTree = "<group>"; };
+		AF7D85E02C18813000789739 /* tv_retro.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = tv_retro.usdz; sourceTree = "<group>"; };
+		AF7D85E12C18813000789739 /* chair_swan copy 5.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "chair_swan copy 5.usdz"; sourceTree = "<group>"; };
+		AF7D85E22C18813000789739 /* tv_retro copy 3.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "tv_retro copy 3.usdz"; sourceTree = "<group>"; };
+		AF7D85E32C18813000789739 /* chair_swan copy 9.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "chair_swan copy 9.usdz"; sourceTree = "<group>"; };
+		AF7D85E42C18813000789739 /* chair_swan copy 6.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "chair_swan copy 6.usdz"; sourceTree = "<group>"; };
+		AF7D85E52C18813000789739 /* chair_swan.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = chair_swan.usdz; sourceTree = "<group>"; };
+		AF7D85E62C18813000789739 /* tv_retro copy 9.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "tv_retro copy 9.usdz"; sourceTree = "<group>"; };
+		AF7D85E72C18813000789739 /* chair_swan copy 8.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "chair_swan copy 8.usdz"; sourceTree = "<group>"; };
+		AF7D85E82C18813000789739 /* chair_swan copy.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "chair_swan copy.usdz"; sourceTree = "<group>"; };
+		AF7D85E92C18813000789739 /* chair_swan copy 2.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "chair_swan copy 2.usdz"; sourceTree = "<group>"; };
+		AF7D85EA2C18813000789739 /* tv_retro copy 4.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "tv_retro copy 4.usdz"; sourceTree = "<group>"; };
+		AF7D85EB2C18813000789739 /* tv_retro copy 8.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "tv_retro copy 8.usdz"; sourceTree = "<group>"; };
+		AF7D85EC2C18813000789739 /* chair_swan copy 3.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "chair_swan copy 3.usdz"; sourceTree = "<group>"; };
+		AF7D85ED2C18813000789739 /* tv_retro copy 7.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "tv_retro copy 7.usdz"; sourceTree = "<group>"; };
+		AF7D85EE2C18813000789739 /* tv_retro copy 5.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "tv_retro copy 5.usdz"; sourceTree = "<group>"; };
+		AF7D85EF2C18813000789739 /* tv_retro copy 6.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "tv_retro copy 6.usdz"; sourceTree = "<group>"; };
+		AF7D85F02C18813000789739 /* chair_swan copy 4.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "chair_swan copy 4.usdz"; sourceTree = "<group>"; };
+		AF7D85F12C18813000789739 /* tv_retro copy 2.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "tv_retro copy 2.usdz"; sourceTree = "<group>"; };
+		AF7D85F22C18813000789739 /* chair_swan copy 7.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "chair_swan copy 7.usdz"; sourceTree = "<group>"; };
+		AF7D85F32C18813000789739 /* tv_retro copy.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "tv_retro copy.usdz"; sourceTree = "<group>"; };
+		AF7D86082C18815600789739 /* tv_retro copy 13.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "tv_retro copy 13.usdz"; sourceTree = "<group>"; };
+		AF7D86092C18815600789739 /* tv_retro copy 2.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "tv_retro copy 2.usdz"; sourceTree = "<group>"; };
+		AF7D860A2C18815600789739 /* chair_swan copy 4.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "chair_swan copy 4.usdz"; sourceTree = "<group>"; };
+		AF7D860B2C18815600789739 /* tv_retro copy 14.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "tv_retro copy 14.usdz"; sourceTree = "<group>"; };
+		AF7D860C2C18815600789739 /* tv_retro copy 5.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "tv_retro copy 5.usdz"; sourceTree = "<group>"; };
+		AF7D860D2C18815600789739 /* chair_swan copy 3.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "chair_swan copy 3.usdz"; sourceTree = "<group>"; };
+		AF7D860E2C18815600789739 /* tv_retro copy 15.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "tv_retro copy 15.usdz"; sourceTree = "<group>"; };
+		AF7D860F2C18815600789739 /* tv_retro copy 17.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "tv_retro copy 17.usdz"; sourceTree = "<group>"; };
+		AF7D86102C18815600789739 /* chair_swan copy 10.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "chair_swan copy 10.usdz"; sourceTree = "<group>"; };
+		AF7D86112C18815600789739 /* chair_swan copy 15.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "chair_swan copy 15.usdz"; sourceTree = "<group>"; };
+		AF7D86122C18815600789739 /* chair_swan copy 9.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "chair_swan copy 9.usdz"; sourceTree = "<group>"; };
+		AF7D86132C18815600789739 /* chair_swan copy 16.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "chair_swan copy 16.usdz"; sourceTree = "<group>"; };
+		AF7D86142C18815600789739 /* tv_retro copy 10.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "tv_retro copy 10.usdz"; sourceTree = "<group>"; };
+		AF7D86152C18815600789739 /* chair_swan copy 14.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "chair_swan copy 14.usdz"; sourceTree = "<group>"; };
+		AF7D86162C18815600789739 /* tv_retro copy 16.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "tv_retro copy 16.usdz"; sourceTree = "<group>"; };
+		AF7D86172C18815600789739 /* chair_swan copy 2.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "chair_swan copy 2.usdz"; sourceTree = "<group>"; };
+		AF7D86182C18815700789739 /* tv_retro copy 7.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "tv_retro copy 7.usdz"; sourceTree = "<group>"; };
+		AF7D86192C18815700789739 /* tv_retro copy 8.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "tv_retro copy 8.usdz"; sourceTree = "<group>"; };
+		AF7D861A2C18815700789739 /* chair_swan copy 19.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "chair_swan copy 19.usdz"; sourceTree = "<group>"; };
+		AF7D861B2C18815700789739 /* chair_swan copy 13.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "chair_swan copy 13.usdz"; sourceTree = "<group>"; };
+		AF7D861C2C18815700789739 /* chair_swan copy 17.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "chair_swan copy 17.usdz"; sourceTree = "<group>"; };
+		AF7D861D2C18815700789739 /* chair_swan copy 5.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "chair_swan copy 5.usdz"; sourceTree = "<group>"; };
+		AF7D861E2C18815700789739 /* tv_retro copy 4.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "tv_retro copy 4.usdz"; sourceTree = "<group>"; };
+		AF7D861F2C18815700789739 /* chair_swan copy.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "chair_swan copy.usdz"; sourceTree = "<group>"; };
+		AF7D86202C18815700789739 /* chair_swan.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = chair_swan.usdz; sourceTree = "<group>"; };
+		AF7D86212C18815700789739 /* chair_swan copy 7.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "chair_swan copy 7.usdz"; sourceTree = "<group>"; };
+		AF7D86222C18815700789739 /* tv_retro copy 9.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "tv_retro copy 9.usdz"; sourceTree = "<group>"; };
+		AF7D86232C18815700789739 /* tv_retro copy 3.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "tv_retro copy 3.usdz"; sourceTree = "<group>"; };
+		AF7D86242C18815700789739 /* chair_swan copy 6.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "chair_swan copy 6.usdz"; sourceTree = "<group>"; };
+		AF7D86252C18815700789739 /* tv_retro copy.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "tv_retro copy.usdz"; sourceTree = "<group>"; };
+		AF7D86262C18815700789739 /* chair_swan copy 8.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "chair_swan copy 8.usdz"; sourceTree = "<group>"; };
+		AF7D86272C18815700789739 /* chair_swan copy 12.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "chair_swan copy 12.usdz"; sourceTree = "<group>"; };
+		AF7D86282C18815700789739 /* tv_retro copy 11.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "tv_retro copy 11.usdz"; sourceTree = "<group>"; };
+		AF7D86292C18815700789739 /* tv_retro copy 18.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "tv_retro copy 18.usdz"; sourceTree = "<group>"; };
+		AF7D862A2C18815700789739 /* tv_retro.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = tv_retro.usdz; sourceTree = "<group>"; };
+		AF7D862B2C18815700789739 /* chair_swan copy 11.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "chair_swan copy 11.usdz"; sourceTree = "<group>"; };
+		AF7D862C2C18815700789739 /* tv_retro copy 19.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "tv_retro copy 19.usdz"; sourceTree = "<group>"; };
+		AF7D862D2C18815700789739 /* chair_swan copy 18.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "chair_swan copy 18.usdz"; sourceTree = "<group>"; };
+		AF7D862E2C18815700789739 /* tv_retro copy 6.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "tv_retro copy 6.usdz"; sourceTree = "<group>"; };
+		AF7D862F2C18815700789739 /* tv_retro copy 12.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "tv_retro copy 12.usdz"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +204,68 @@
 		AF7D85D82C18769400789739 /* Objects */ = {
 			isa = PBXGroup;
 			children = (
+				AF7D86172C18815600789739 /* chair_swan copy 2.usdz */,
+				AF7D860D2C18815600789739 /* chair_swan copy 3.usdz */,
+				AF7D860A2C18815600789739 /* chair_swan copy 4.usdz */,
+				AF7D861D2C18815700789739 /* chair_swan copy 5.usdz */,
+				AF7D86242C18815700789739 /* chair_swan copy 6.usdz */,
+				AF7D86212C18815700789739 /* chair_swan copy 7.usdz */,
+				AF7D86262C18815700789739 /* chair_swan copy 8.usdz */,
+				AF7D86122C18815600789739 /* chair_swan copy 9.usdz */,
+				AF7D86102C18815600789739 /* chair_swan copy 10.usdz */,
+				AF7D862B2C18815700789739 /* chair_swan copy 11.usdz */,
+				AF7D86272C18815700789739 /* chair_swan copy 12.usdz */,
+				AF7D861B2C18815700789739 /* chair_swan copy 13.usdz */,
+				AF7D86152C18815600789739 /* chair_swan copy 14.usdz */,
+				AF7D86112C18815600789739 /* chair_swan copy 15.usdz */,
+				AF7D86132C18815600789739 /* chair_swan copy 16.usdz */,
+				AF7D861C2C18815700789739 /* chair_swan copy 17.usdz */,
+				AF7D862D2C18815700789739 /* chair_swan copy 18.usdz */,
+				AF7D861A2C18815700789739 /* chair_swan copy 19.usdz */,
+				AF7D861F2C18815700789739 /* chair_swan copy.usdz */,
+				AF7D86202C18815700789739 /* chair_swan.usdz */,
+				AF7D86092C18815600789739 /* tv_retro copy 2.usdz */,
+				AF7D86232C18815700789739 /* tv_retro copy 3.usdz */,
+				AF7D861E2C18815700789739 /* tv_retro copy 4.usdz */,
+				AF7D860C2C18815600789739 /* tv_retro copy 5.usdz */,
+				AF7D862E2C18815700789739 /* tv_retro copy 6.usdz */,
+				AF7D86182C18815700789739 /* tv_retro copy 7.usdz */,
+				AF7D86192C18815700789739 /* tv_retro copy 8.usdz */,
+				AF7D86222C18815700789739 /* tv_retro copy 9.usdz */,
+				AF7D86142C18815600789739 /* tv_retro copy 10.usdz */,
+				AF7D86282C18815700789739 /* tv_retro copy 11.usdz */,
+				AF7D862F2C18815700789739 /* tv_retro copy 12.usdz */,
+				AF7D86082C18815600789739 /* tv_retro copy 13.usdz */,
+				AF7D860B2C18815600789739 /* tv_retro copy 14.usdz */,
+				AF7D860E2C18815600789739 /* tv_retro copy 15.usdz */,
+				AF7D86162C18815600789739 /* tv_retro copy 16.usdz */,
+				AF7D860F2C18815600789739 /* tv_retro copy 17.usdz */,
+				AF7D86292C18815700789739 /* tv_retro copy 18.usdz */,
+				AF7D862C2C18815700789739 /* tv_retro copy 19.usdz */,
+				AF7D86252C18815700789739 /* tv_retro copy.usdz */,
+				AF7D862A2C18815700789739 /* tv_retro.usdz */,
+				AF7D85E92C18813000789739 /* chair_swan copy 2.usdz */,
+				AF7D85EC2C18813000789739 /* chair_swan copy 3.usdz */,
+				AF7D85F02C18813000789739 /* chair_swan copy 4.usdz */,
+				AF7D85E12C18813000789739 /* chair_swan copy 5.usdz */,
+				AF7D85E42C18813000789739 /* chair_swan copy 6.usdz */,
+				AF7D85F22C18813000789739 /* chair_swan copy 7.usdz */,
+				AF7D85E72C18813000789739 /* chair_swan copy 8.usdz */,
+				AF7D85E32C18813000789739 /* chair_swan copy 9.usdz */,
+				AF7D85E82C18813000789739 /* chair_swan copy.usdz */,
+				AF7D85E52C18813000789739 /* chair_swan.usdz */,
+				AF7D85F12C18813000789739 /* tv_retro copy 2.usdz */,
+				AF7D85E22C18813000789739 /* tv_retro copy 3.usdz */,
+				AF7D85EA2C18813000789739 /* tv_retro copy 4.usdz */,
+				AF7D85EE2C18813000789739 /* tv_retro copy 5.usdz */,
+				AF7D85EF2C18813000789739 /* tv_retro copy 6.usdz */,
+				AF7D85ED2C18813000789739 /* tv_retro copy 7.usdz */,
+				AF7D85EB2C18813000789739 /* tv_retro copy 8.usdz */,
+				AF7D85E62C18813000789739 /* tv_retro copy 9.usdz */,
+				AF7D85F32C18813000789739 /* tv_retro copy.usdz */,
+				AF7D85E02C18813000789739 /* tv_retro.usdz */,
+				AF7D85DC2C1877E000789739 /* chair_swan.usdz */,
+				AF7D85DD2C1877E000789739 /* tv_retro.usdz */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
@@ -169,9 +355,71 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF7D86382C18815700789739 /* chair_swan copy 10.usdz in Resources */,
+				AF7D85F42C18813000789739 /* tv_retro.usdz in Resources */,
+				AF7D86392C18815700789739 /* chair_swan copy 15.usdz in Resources */,
+				AF7D86422C18815700789739 /* chair_swan copy 19.usdz in Resources */,
+				AF7D86312C18815700789739 /* tv_retro copy 2.usdz in Resources */,
+				AF7D864A2C18815700789739 /* tv_retro copy 9.usdz in Resources */,
+				AF7D85FA2C18813000789739 /* tv_retro copy 9.usdz in Resources */,
+				AF7D863A2C18815700789739 /* chair_swan copy 9.usdz in Resources */,
+				AF7D86052C18813000789739 /* tv_retro copy 2.usdz in Resources */,
+				AF7D86482C18815700789739 /* chair_swan.usdz in Resources */,
 				AF5DC4D72C17121800549312 /* Preview Assets.xcassets in Resources */,
+				AF7D864F2C18815700789739 /* chair_swan copy 12.usdz in Resources */,
+				AF7D85FD2C18813000789739 /* chair_swan copy 2.usdz in Resources */,
+				AF7D86072C18813000789739 /* tv_retro copy.usdz in Resources */,
+				AF7D86042C18813000789739 /* chair_swan copy 4.usdz in Resources */,
+				AF7D86032C18813000789739 /* tv_retro copy 6.usdz in Resources */,
+				AF7D86012C18813000789739 /* tv_retro copy 7.usdz in Resources */,
+				AF7D86022C18813000789739 /* tv_retro copy 5.usdz in Resources */,
+				AF7D86522C18815700789739 /* tv_retro.usdz in Resources */,
+				AF7D86332C18815700789739 /* tv_retro copy 14.usdz in Resources */,
+				AF7D85F82C18813000789739 /* chair_swan copy 6.usdz in Resources */,
+				AF7D85FC2C18813000789739 /* chair_swan copy.usdz in Resources */,
+				AF7D85F92C18813000789739 /* chair_swan.usdz in Resources */,
 				AF5DC4D42C17121800549312 /* Assets.xcassets in Resources */,
+				AF7D86372C18815700789739 /* tv_retro copy 17.usdz in Resources */,
+				AF7D86442C18815700789739 /* chair_swan copy 17.usdz in Resources */,
+				AF7D863B2C18815700789739 /* chair_swan copy 16.usdz in Resources */,
+				AF7D86432C18815700789739 /* chair_swan copy 13.usdz in Resources */,
+				AF7D85FF2C18813000789739 /* tv_retro copy 8.usdz in Resources */,
+				AF7D85F62C18813000789739 /* tv_retro copy 3.usdz in Resources */,
+				AF7D85DE2C1877E000789739 /* chair_swan.usdz in Resources */,
+				AF7D85F72C18813000789739 /* chair_swan copy 9.usdz in Resources */,
+				AF7D86462C18815700789739 /* tv_retro copy 4.usdz in Resources */,
+				AF7D863D2C18815700789739 /* chair_swan copy 14.usdz in Resources */,
+				AF7D85DF2C1877E000789739 /* tv_retro.usdz in Resources */,
+				AF7D864B2C18815700789739 /* tv_retro copy 3.usdz in Resources */,
+				AF7D86532C18815700789739 /* chair_swan copy 11.usdz in Resources */,
+				AF7D86002C18813000789739 /* chair_swan copy 3.usdz in Resources */,
+				AF7D86062C18813000789739 /* chair_swan copy 7.usdz in Resources */,
+				AF7D864C2C18815700789739 /* chair_swan copy 6.usdz in Resources */,
+				AF7D86512C18815700789739 /* tv_retro copy 18.usdz in Resources */,
+				AF7D85FE2C18813000789739 /* tv_retro copy 4.usdz in Resources */,
+				AF7D85F52C18813000789739 /* chair_swan copy 5.usdz in Resources */,
+				AF7D86402C18815700789739 /* tv_retro copy 7.usdz in Resources */,
+				AF7D863F2C18815700789739 /* chair_swan copy 2.usdz in Resources */,
+				AF7D86342C18815700789739 /* tv_retro copy 5.usdz in Resources */,
+				AF7D86562C18815700789739 /* tv_retro copy 6.usdz in Resources */,
+				AF7D86572C18815700789739 /* tv_retro copy 12.usdz in Resources */,
+				AF7D863E2C18815700789739 /* tv_retro copy 16.usdz in Resources */,
+				AF7D86472C18815700789739 /* chair_swan copy.usdz in Resources */,
+				AF7D864E2C18815700789739 /* chair_swan copy 8.usdz in Resources */,
+				AF7D86542C18815700789739 /* tv_retro copy 19.usdz in Resources */,
+				AF7D86412C18815700789739 /* tv_retro copy 8.usdz in Resources */,
+				AF7D864D2C18815700789739 /* tv_retro copy.usdz in Resources */,
+				AF7D86322C18815700789739 /* chair_swan copy 4.usdz in Resources */,
 				AF3C9E172C1859B500C9332D /* ARViewController.xib in Resources */,
+				AF7D85FB2C18813000789739 /* chair_swan copy 8.usdz in Resources */,
+				AF7D86302C18815700789739 /* tv_retro copy 13.usdz in Resources */,
+				AF7D86352C18815700789739 /* chair_swan copy 3.usdz in Resources */,
+				AF7D863C2C18815700789739 /* tv_retro copy 10.usdz in Resources */,
+				AF7D86452C18815700789739 /* chair_swan copy 5.usdz in Resources */,
+				AF7D86552C18815700789739 /* chair_swan copy 18.usdz in Resources */,
+				AF7D86492C18815700789739 /* chair_swan copy 7.usdz in Resources */,
+				AF7D86362C18815700789739 /* tv_retro copy 15.usdz in Resources */,
+				AF7D86502C18815700789739 /* tv_retro copy 11.usdz in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
