@@ -9,10 +9,8 @@
 /* Begin PBXBuildFile section */
 		AF3C9E172C1859B500C9332D /* ARViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF3C9E162C1859B500C9332D /* ARViewController.xib */; };
 		AF5DC4D02C17121700549312 /* ProgettoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5DC4CF2C17121700549312 /* ProgettoApp.swift */; };
-		AF5DC4D22C17121700549312 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5DC4D12C17121700549312 /* ContentView.swift */; };
 		AF5DC4D42C17121800549312 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF5DC4D32C17121800549312 /* Assets.xcassets */; };
 		AF5DC4D72C17121800549312 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF5DC4D62C17121800549312 /* Preview Assets.xcassets */; };
-		AF5DC4DE2C17183E00549312 /* ARViewControllerRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5DC4DD2C17183E00549312 /* ARViewControllerRepresentable.swift */; };
 		AF5DC4E02C17188100549312 /* ARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5DC4DF2C17188100549312 /* ARViewController.swift */; };
 		AF7D85D32C18730200789739 /* SelectObjectMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7D85D22C18730200789739 /* SelectObjectMenu.swift */; };
 		AF7D85D52C18749700789739 /* ARObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7D85D42C18749700789739 /* ARObject.swift */; };
@@ -23,10 +21,8 @@
 		AF3C9E162C1859B500C9332D /* ARViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ARViewController.xib; sourceTree = "<group>"; };
 		AF5DC4CC2C17121700549312 /* Progetto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Progetto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF5DC4CF2C17121700549312 /* ProgettoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgettoApp.swift; sourceTree = "<group>"; };
-		AF5DC4D12C17121700549312 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		AF5DC4D32C17121800549312 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AF5DC4D62C17121800549312 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		AF5DC4DD2C17183E00549312 /* ARViewControllerRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewControllerRepresentable.swift; sourceTree = "<group>"; };
 		AF5DC4DF2C17188100549312 /* ARViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewController.swift; sourceTree = "<group>"; };
 		AF7D85D22C18730200789739 /* SelectObjectMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectObjectMenu.swift; sourceTree = "<group>"; };
 		AF7D85D42C18749700789739 /* ARObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARObject.swift; sourceTree = "<group>"; };
@@ -63,16 +59,12 @@
 		AF5DC4CE2C17121700549312 /* Progetto */ = {
 			isa = PBXGroup;
 			children = (
-				AF5DC4DF2C17188100549312 /* ARViewController.swift */,
-				AF5DC4DD2C17183E00549312 /* ARViewControllerRepresentable.swift */,
-				AF7D85D42C18749700789739 /* ARObject.swift */,
-				AF7D85D62C18756200789739 /* SettingsMenu.swift */,
+				AF7D85DA2C1876F700789739 /* ViewController */,
+				AF7D85D92C1876E100789739 /* Model */,
+				AF7D85D82C18769400789739 /* Objects */,
 				AF5DC4CF2C17121700549312 /* ProgettoApp.swift */,
-				AF5DC4D12C17121700549312 /* ContentView.swift */,
 				AF5DC4D32C17121800549312 /* Assets.xcassets */,
 				AF5DC4D52C17121800549312 /* Preview Content */,
-				AF3C9E162C1859B500C9332D /* ARViewController.xib */,
-				AF7D85D22C18730200789739 /* SelectObjectMenu.swift */,
 			);
 			path = Progetto;
 			sourceTree = "<group>";
@@ -83,6 +75,40 @@
 				AF5DC4D62C17121800549312 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		AF7D85D82C18769400789739 /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Objects;
+			sourceTree = "<group>";
+		};
+		AF7D85D92C1876E100789739 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AF7D85D42C18749700789739 /* ARObject.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		AF7D85DA2C1876F700789739 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				AF7D85DB2C18773900789739 /* Menus */,
+				AF5DC4DF2C17188100549312 /* ARViewController.swift */,
+				AF3C9E162C1859B500C9332D /* ARViewController.xib */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		AF7D85DB2C18773900789739 /* Menus */ = {
+			isa = PBXGroup;
+			children = (
+				AF7D85D22C18730200789739 /* SelectObjectMenu.swift */,
+				AF7D85D62C18756200789739 /* SettingsMenu.swift */,
+			);
+			path = Menus;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -156,10 +182,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AF5DC4D22C17121700549312 /* ContentView.swift in Sources */,
 				AF7D85D72C18756200789739 /* SettingsMenu.swift in Sources */,
 				AF7D85D52C18749700789739 /* ARObject.swift in Sources */,
-				AF5DC4DE2C17183E00549312 /* ARViewControllerRepresentable.swift in Sources */,
 				AF7D85D32C18730200789739 /* SelectObjectMenu.swift in Sources */,
 				AF5DC4D02C17121700549312 /* ProgettoApp.swift in Sources */,
 				AF5DC4E02C17188100549312 /* ARViewController.swift in Sources */,
