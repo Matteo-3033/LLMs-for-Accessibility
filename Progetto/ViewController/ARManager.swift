@@ -7,8 +7,18 @@
 
 import ARKit
 import RealityKit
+import SwiftUI
+
+struct ARSettings {
+    var showPlanes: Bool = false
+    var showBorders: Bool = true
+    var borderWidth: Float = 10
+    var selectedColor: Color = Color.green
+    var backgroundColor: Color = Color.red
+}
 
 class ARManager: NSObject, ARSessionDelegate {
+    var settings = ARSettings()
     private var arView: ARView
     private let arConfiguration: ARConfiguration
     

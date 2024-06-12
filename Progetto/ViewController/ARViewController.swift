@@ -50,7 +50,11 @@ class ARViewController: UIViewController {
     @IBAction func didTapOnSettings(_ sender: Any) {
         print("didTapOnSettings")
         
-        let settingsMenu = UIHostingController(rootView: SettingsMenu())
+        var settingsMenu: UIHostingController<SettingsMenu>!
+        settingsMenu = UIHostingController(rootView: SettingsMenu(settings: arManager.settings) { settings in
+            settingsMenu.dismiss(animated: true)
+            self.arManager.settings = settings
+        })
         settingsMenu.modalPresentationStyle = .pageSheet
         settingsMenu.isModalInPresentation = false
         settingsMenu.sheetPresentationController?.detents = [.large()]
