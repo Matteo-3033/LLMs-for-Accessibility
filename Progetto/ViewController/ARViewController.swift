@@ -63,7 +63,6 @@ class ARViewController: UIViewController {
     @objc
     private func didOneFingerDoubleTap(sender: UITapGestureRecognizer) {
         print("didOneFingerDoubleTap")
-        
     }
     
     @objc
