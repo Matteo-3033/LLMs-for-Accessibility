@@ -549,6 +549,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Progetto/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Augmented Reality uses live images from the Camera.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Used for testing";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -583,6 +584,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Progetto/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Augmented Reality uses live images from the Camera.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Used for testing";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

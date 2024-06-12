@@ -21,7 +21,7 @@ class ARManager: NSObject, ARSessionDelegate {
     private var arView: ARView
     private let arConfiguration: ARConfiguration
     
-    var onFrameCallback: ((CVPixelBuffer) -> Void)?
+    private(set) var currentFrame: CVPixelBuffer?
     
     init(arView: ARView) {
         self.arView = arView
@@ -79,7 +79,7 @@ class ARManager: NSObject, ARSessionDelegate {
             }
         }
         
-        onFrameCallback?(frame.capturedImage)
+        currentFrame = frame.capturedImage
     }
     
     public func session(_ session: ARSession, didAdd anchors: [ARAnchor]) {

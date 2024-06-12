@@ -24,7 +24,6 @@ class ARViewController: UIViewController {
         
         arManager = ARManager(arView: arView)
         arManager.startSession()
-        arManager.onFrameCallback = onFrameCallback
         
         initGestures()
     }
@@ -92,6 +91,11 @@ class ARViewController: UIViewController {
     @objc
     private func didTwoFingerSwipeDown(sender: UISwipeGestureRecognizer) {
         print("didTwoFingerSwipeDown")
+        
+        guard let frame = arManager.currentFrame else { return }
+
+        print("Saving current frame to gallery")
+        UIImageWriteToSavedPhotosAlbum(frame.toUIImage(), nil, nil, nil)
     }
     
     @objc
@@ -140,8 +144,13 @@ class ARViewController: UIViewController {
         settingsMenu.sheetPresentationController?.detents = [.large()]
         present(settingsMenu, animated: true)
     }
-    
-    private func onFrameCallback(frame: CVPixelBuffer) {
-        
+}
+
+extension CVPixelBuffer {
+    public func toUIImage() -> UIImage {
+        let ciImageDepth = CIImage(cvPixelBuffer: self)
+        let contextDepth = CIContext.init(options: nil)
+        let cgImageDepth = contextDepth.createCGImage(ciImageDepth, from: ciImageDepth.extent)!
+        return UIImage(cgImage: cgImageDepth, scale: 1, orientation: UIImage.Orientation.right)
     }
 }
