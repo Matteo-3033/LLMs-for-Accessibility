@@ -15,7 +15,6 @@ class ARViewController: UIViewController {
     @IBOutlet weak var addObject: UIButton!
     @IBOutlet weak var settings: UIButton!
     
-    var selectedObject: ARObject?
     var arManager: ARManager!
     
     override func viewDidAppear(_ animated: Bool) {
@@ -39,7 +38,7 @@ class ARViewController: UIViewController {
         var selectObjectMenu: UIHostingController<SelectObjectMenu>!
         selectObjectMenu = UIHostingController(rootView: SelectObjectMenu { obj in
             selectObjectMenu.dismiss(animated: true)
-            self.selectedObject = obj
+            self.arManager.objectToSpawn = obj
         })
         selectObjectMenu.modalPresentationStyle = .pageSheet
         selectObjectMenu.isModalInPresentation = false
