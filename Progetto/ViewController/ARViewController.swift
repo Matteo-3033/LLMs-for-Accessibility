@@ -15,7 +15,8 @@ class ARViewController: UIViewController {
     @IBOutlet weak var addObject: UIButton!
     @IBOutlet weak var settings: UIButton!
     
-    var arManager: ARManager!
+    private var objectToSpawn: ARObject?
+    private var arManager: ARManager!
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -23,11 +24,90 @@ class ARViewController: UIViewController {
         
         arManager = ARManager(arView: arView)
         arManager.startSession()
+        arManager.onFrameCallback = onFrameCallback
+        
+        initGestures()
+    }
+    
+    private func initGestures() {
+        let oneFingerDoubleTapGestureRecognizer = UITapGestureRecognizer(
+            target: self, action: #selector(didOneFingerDoubleTap(sender:))
+        )
+        oneFingerDoubleTapGestureRecognizer.numberOfTapsRequired = 2
+        oneFingerDoubleTapGestureRecognizer.numberOfTouchesRequired = 1
+        arView.addGestureRecognizer(oneFingerDoubleTapGestureRecognizer)
+        
+        let oneFingerLongTapGestureRecognizer = UILongPressGestureRecognizer(
+            target: self, action: #selector(didOneFingerLongTap(sender:))
+        )
+        arView.addGestureRecognizer(oneFingerLongTapGestureRecognizer)
+        
+        let twoFingerSwipeUpGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(didTwoFingerSwipeUp(sender:)))
+        twoFingerSwipeUpGestureRecognizer.direction = .up
+        twoFingerSwipeUpGestureRecognizer.numberOfTouchesRequired = 2
+        arView.addGestureRecognizer(twoFingerSwipeUpGestureRecognizer)
+        
+        let twoFingerSwipeDownGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(didTwoFingerSwipeDown(sender:)))
+        twoFingerSwipeDownGestureRecognizer.direction = .down
+        twoFingerSwipeDownGestureRecognizer.numberOfTouchesRequired = 2
+        arView.addGestureRecognizer(twoFingerSwipeDownGestureRecognizer)
+        
+        let twoFingerSwipeLeftGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(didTwoFingerSwipeLeft(sender:)))
+        twoFingerSwipeLeftGestureRecognizer.direction = .left
+        twoFingerSwipeLeftGestureRecognizer.numberOfTouchesRequired = 2
+        arView.addGestureRecognizer(twoFingerSwipeLeftGestureRecognizer)
+        
+        let twoFingerSwipeRightGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(didTwoFingerSwipeRight(sender:)))
+        twoFingerSwipeRightGestureRecognizer.direction = .right
+        twoFingerSwipeRightGestureRecognizer.numberOfTouchesRequired = 2
+        arView.addGestureRecognizer(twoFingerSwipeRightGestureRecognizer)
+    }
+    
+    @objc
+    private func didOneFingerDoubleTap(sender: UITapGestureRecognizer) {
+        print("didOneFingerDoubleTap")
+        
+    }
+    
+    @objc
+    private func didOneFingerLongTap(sender: UILongPressGestureRecognizer) {
+        print("didOneFingerLongTap: state \(String(sender.state.rawValue))")
+        
+        guard let objectToSpawn, sender.state == .began else { return }
+        guard let tappedPoint = arView.raycast(
+            from: sender.location(in: self.arView),
+            allowing: .estimatedPlane, alignment: .horizontal
+        ).first else { return }
+        
+        arManager.addObjectToScene(obj: objectToSpawn, transform: tappedPoint.worldTransform)
+        
+        UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
+    }
+    
+    @objc
+    private func didTwoFingerSwipeUp(sender: UISwipeGestureRecognizer) {
+        print("didTwoFingerSwipeUp")
+    }
+    
+    @objc
+    private func didTwoFingerSwipeDown(sender: UISwipeGestureRecognizer) {
+        print("didTwoFingerSwipeDown")
+    }
+    
+    @objc
+    private func didTwoFingerSwipeLeft(sender: UISwipeGestureRecognizer) {
+        print("didTwoFingerSwipeLeft")
+    }
+    
+    @objc
+    private func didTwoFingerSwipeRight(sender: UISwipeGestureRecognizer) {
+        print("didTwoFingerSwipeRight")
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         UIApplication.shared.isIdleTimerDisabled = false
         
+        arView.gestureRecognizers?.removeAll()
         arManager.stopSession()
         arManager = nil
     }
@@ -38,7 +118,7 @@ class ARViewController: UIViewController {
         var selectObjectMenu: UIHostingController<SelectObjectMenu>!
         selectObjectMenu = UIHostingController(rootView: SelectObjectMenu { obj in
             selectObjectMenu.dismiss(animated: true)
-            self.arManager.objectToSpawn = obj
+            self.objectToSpawn = obj
         })
         selectObjectMenu.modalPresentationStyle = .pageSheet
         selectObjectMenu.isModalInPresentation = false
@@ -59,6 +139,9 @@ class ARViewController: UIViewController {
         settingsMenu.isModalInPresentation = false
         settingsMenu.sheetPresentationController?.detents = [.large()]
         present(settingsMenu, animated: true)
+    }
+    
+    private func onFrameCallback(frame: CVPixelBuffer) {
         
     }
 }

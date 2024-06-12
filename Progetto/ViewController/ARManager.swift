@@ -21,7 +21,7 @@ class ARManager: NSObject, ARSessionDelegate {
     private var arView: ARView
     private let arConfiguration: ARConfiguration
     
-    var objectToSpawn: ARObject?
+    var onFrameCallback: ((CVPixelBuffer) -> Void)?
     
     init(arView: ARView) {
         self.arView = arView
@@ -45,48 +45,12 @@ class ARManager: NSObject, ARSessionDelegate {
         arView.session.run(
             arConfiguration, options: [.resetTracking, .removeExistingAnchors]
         )
-        
-        initGestures()
     }
     
-    private func initGestures() {
-        let oneFingerDoubleTapGestureRecognizer = UITapGestureRecognizer(
-            target: self, action: #selector(didOneFingerDoubleTap(sender:))
-        )
-        oneFingerDoubleTapGestureRecognizer.numberOfTapsRequired = 2
-        oneFingerDoubleTapGestureRecognizer.numberOfTouchesRequired = 1
-        arView.addGestureRecognizer(oneFingerDoubleTapGestureRecognizer)
-        
-        let oneFingerLongTapGestureRecognizer = UILongPressGestureRecognizer(
-            target: self, action: #selector(didOneFingerLongTap(sender:))
-        )
-        arView.addGestureRecognizer(oneFingerLongTapGestureRecognizer)
-    }
-    
-    @objc
-    private func didOneFingerDoubleTap(sender: UITapGestureRecognizer) {
-        print("didOneFingerDoubleTap")
-        
-    }
-    
-    @objc
-    private func didOneFingerLongTap(sender: UILongPressGestureRecognizer) {
-        print("didOneFingerLongTap: state \(String(sender.state.rawValue))")
-        
-        guard let objectToSpawn, sender.state == .began else { return }
-        guard let tappedPoint = arView.raycast(
-            from: sender.location(in: self.arView),
-            allowing: .estimatedPlane, alignment: .horizontal
-        ).first else { return }
-        
-        print("Spawning object \(objectToSpawn)")
-        addObjectToScene(obj: objectToSpawn, transform: tappedPoint.worldTransform)
-        
-        UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
-    }
-    
-    private func addObjectToScene(obj: ARObject, transform: simd_float4x4) {
+    public func addObjectToScene(obj: ARObject, transform: simd_float4x4) {
         guard let model = obj.load() else { return }
+        
+        print("addObjectToScene \(obj.modelName)")
         
         let arAnchor = ARObjectAnchor(obj: obj, transform: transform)
         let anchorEntity = AnchorEntity(world: arAnchor.transform)
@@ -97,7 +61,6 @@ class ARManager: NSObject, ARSessionDelegate {
     }
     
     public func stopSession() {
-        arView.gestureRecognizers?.removeAll()
         arView.session.pause()
         arView.session.delegate = nil
     }
@@ -115,6 +78,8 @@ class ARManager: NSObject, ARSessionDelegate {
                 updatePlaneEntity(with: planeAnchor, in: arView, isEnabled: settings.showPlanes)
             }
         }
+        
+        onFrameCallback?(frame.capturedImage)
     }
     
     public func session(_ session: ARSession, didAdd anchors: [ARAnchor]) {
