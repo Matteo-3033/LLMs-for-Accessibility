@@ -21,7 +21,9 @@ class ARManager: NSObject, ARSessionDelegate {
     private var arView: ARView
     private let arConfiguration: ARConfiguration
     
-    private(set) var currentFrame: CVPixelBuffer?
+    public var currentFrame: CVPixelBuffer? {
+        arView.session.currentFrame?.capturedImage
+    }
     
     init(arView: ARView) {
         self.arView = arView
@@ -78,8 +80,6 @@ class ARManager: NSObject, ARSessionDelegate {
                 updatePlaneEntity(with: planeAnchor, in: arView, isEnabled: settings.showPlanes)
             }
         }
-        
-        currentFrame = frame.capturedImage
     }
     
     public func session(_ session: ARSession, didAdd anchors: [ARAnchor]) {

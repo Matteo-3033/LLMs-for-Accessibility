@@ -12,8 +12,6 @@ import ARKit
 class ARViewController: UIViewController {
     
     @IBOutlet weak var arView: ARView!
-    @IBOutlet weak var addObject: UIButton!
-    @IBOutlet weak var settings: UIButton!
     
     private var objectToSpawn: ARObject?
     private var arManager: ARManager!
@@ -26,7 +24,7 @@ class ARViewController: UIViewController {
         arManager.startSession()
         
         initGestures()
-    }
+     }
     
     private func initGestures() {
         let oneFingerDoubleTapGestureRecognizer = UITapGestureRecognizer(
@@ -90,17 +88,24 @@ class ARViewController: UIViewController {
     
     @objc
     private func didTwoFingerSwipeDown(sender: UISwipeGestureRecognizer) {
-        print("didTwoFingerSwipeDown")
+        print("didTwoFingerSwipeDown: complete frame acquisition")
         
-        guard let frame = arManager.currentFrame else { return }
-
-        print("Saving current frame to gallery")
-        UIImageWriteToSavedPhotosAlbum(frame.toUIImage(), nil, nil, nil)
+        arView.snapshot(saveToHDR: false) { image in
+            let compressedImage = UIImage(data: (image?.pngData())!)
+            
+            print("Saving current frame to gallery")
+            compressedImage?.saveToGallery()
+        }
     }
     
     @objc
     private func didTwoFingerSwipeLeft(sender: UISwipeGestureRecognizer) {
-        print("didTwoFingerSwipeLeft")
+        print("didTwoFingerSwipeLeft: camera frame acquisition")
+        
+        guard let frame = arManager.currentFrame else { return }
+
+        print("Saving current camera frame to gallery")
+        frame.toUIImage().saveToGallery()
     }
     
     @objc
@@ -152,5 +157,11 @@ extension CVPixelBuffer {
         let contextDepth = CIContext.init(options: nil)
         let cgImageDepth = contextDepth.createCGImage(ciImageDepth, from: ciImageDepth.extent)!
         return UIImage(cgImage: cgImageDepth, scale: 1, orientation: UIImage.Orientation.right)
+    }
+}
+
+extension UIImage {
+    public func saveToGallery() {
+        UIImageWriteToSavedPhotosAlbum(self, nil, nil, nil)
     }
 }
