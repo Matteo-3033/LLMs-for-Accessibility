@@ -13,6 +13,8 @@
 		AF5DC4D72C17121800549312 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF5DC4D62C17121800549312 /* Preview Assets.xcassets */; };
 		AF5DC4E02C17188100549312 /* ARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5DC4DF2C17188100549312 /* ARViewController.swift */; };
 		AF7BE4D82C197CCF00A47958 /* ARManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7BE4D72C197CCF00A47958 /* ARManager.swift */; };
+		AF7BE4DA2C19908700A47958 /* ARObjectAnchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7BE4D92C19908700A47958 /* ARObjectAnchor.swift */; };
+		AF7BE4DC2C199C7000A47958 /* Planes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7BE4DB2C199C7000A47958 /* Planes.swift */; };
 		AF7D85D32C18730200789739 /* SelectObjectMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7D85D22C18730200789739 /* SelectObjectMenu.swift */; };
 		AF7D85D52C18749700789739 /* ARObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7D85D42C18749700789739 /* ARObject.swift */; };
 		AF7D85D72C18756200789739 /* SettingsMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7D85D62C18756200789739 /* SettingsMenu.swift */; };
@@ -66,6 +68,8 @@
 		AF5DC4D62C17121800549312 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		AF5DC4DF2C17188100549312 /* ARViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewController.swift; sourceTree = "<group>"; };
 		AF7BE4D72C197CCF00A47958 /* ARManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARManager.swift; sourceTree = "<group>"; };
+		AF7BE4D92C19908700A47958 /* ARObjectAnchor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARObjectAnchor.swift; sourceTree = "<group>"; };
+		AF7BE4DB2C199C7000A47958 /* Planes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Planes.swift; sourceTree = "<group>"; };
 		AF7D85D22C18730200789739 /* SelectObjectMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectObjectMenu.swift; sourceTree = "<group>"; };
 		AF7D85D42C18749700789739 /* ARObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARObject.swift; sourceTree = "<group>"; };
 		AF7D85D62C18756200789739 /* SettingsMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsMenu.swift; sourceTree = "<group>"; };
@@ -181,6 +185,14 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		AF7BE4DD2C199C8600A47958 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				AF7BE4DB2C199C7000A47958 /* Planes.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		AF7D85D82C18769400789739 /* Objects */ = {
 			isa = PBXGroup;
 			children = (
@@ -254,6 +266,7 @@
 			isa = PBXGroup;
 			children = (
 				AF7D85D42C18749700789739 /* ARObject.swift */,
+				AF7BE4D92C19908700A47958 /* ARObjectAnchor.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -261,6 +274,7 @@
 		AF7D85DA2C1876F700789739 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				AF7BE4DD2C199C8600A47958 /* Utils */,
 				AF7D85DB2C18773900789739 /* Menus */,
 				AF5DC4DF2C17188100549312 /* ARViewController.swift */,
 				AF3C9E162C1859B500C9332D /* ARViewController.xib */,
@@ -390,6 +404,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				AF7D85D72C18756200789739 /* SettingsMenu.swift in Sources */,
+				AF7BE4DA2C19908700A47958 /* ARObjectAnchor.swift in Sources */,
+				AF7BE4DC2C199C7000A47958 /* Planes.swift in Sources */,
 				AF7D85D52C18749700789739 /* ARObject.swift in Sources */,
 				AF7D85D32C18730200789739 /* SelectObjectMenu.swift in Sources */,
 				AF5DC4D02C17121700549312 /* ProgettoApp.swift in Sources */,
