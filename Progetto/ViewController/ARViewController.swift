@@ -16,10 +16,21 @@ class ARViewController: UIViewController {
     @IBOutlet weak var settings: UIButton!
     
     var selectedObject: ARObject?
+    var arManager: ARManager!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        UIApplication.shared.isIdleTimerDisabled = true
         
+        arManager = ARManager(arView: arView)
+        arManager.startSession()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        UIApplication.shared.isIdleTimerDisabled = false
+        
+        arManager.stopSession()
+        arManager = nil
     }
     
     @IBAction func didTapOnAddObject(_ sender: Any) {
