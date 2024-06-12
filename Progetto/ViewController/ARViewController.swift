@@ -88,13 +88,11 @@ class ARViewController: UIViewController {
     
     @objc
     private func didTwoFingerSwipeDown(sender: UISwipeGestureRecognizer) {
-        print("didTwoFingerSwipeDown: complete frame acquisition")
+        print("didTwoFingerSwipeDown: frame acquisition")
         
-        arView.snapshot(saveToHDR: false) { image in
-            let compressedImage = UIImage(data: (image?.pngData())!)
-            
+        arManager.currentFrame { frame in
             print("Saving current frame to gallery")
-            compressedImage?.saveToGallery()
+            frame?.saveToGallery()
         }
     }
     
@@ -102,15 +100,20 @@ class ARViewController: UIViewController {
     private func didTwoFingerSwipeLeft(sender: UISwipeGestureRecognizer) {
         print("didTwoFingerSwipeLeft: camera frame acquisition")
         
-        guard let frame = arManager.currentFrame else { return }
-
-        print("Saving current camera frame to gallery")
-        frame.toUIImage().saveToGallery()
+        arManager.currentCameraFrame { frame in
+            print("Saving current camera frame to gallery")
+            frame?.saveToGallery()
+        }
     }
     
     @objc
     private func didTwoFingerSwipeRight(sender: UISwipeGestureRecognizer) {
-        print("didTwoFingerSwipeRight")
+        print("didTwoFingerSwipeRight: AR frame acquisition")
+        
+        arManager.currentARFrame { frame in
+            print("Saving current AR frame to gallery")
+            frame?.saveToGallery()
+        }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -148,15 +151,6 @@ class ARViewController: UIViewController {
         settingsMenu.isModalInPresentation = false
         settingsMenu.sheetPresentationController?.detents = [.large()]
         present(settingsMenu, animated: true)
-    }
-}
-
-extension CVPixelBuffer {
-    public func toUIImage() -> UIImage {
-        let ciImageDepth = CIImage(cvPixelBuffer: self)
-        let contextDepth = CIContext.init(options: nil)
-        let cgImageDepth = contextDepth.createCGImage(ciImageDepth, from: ciImageDepth.extent)!
-        return UIImage(cgImage: cgImageDepth, scale: 1, orientation: UIImage.Orientation.right)
     }
 }
 

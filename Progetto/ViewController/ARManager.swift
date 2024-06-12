@@ -21,10 +21,6 @@ class ARManager: NSObject, ARSessionDelegate {
     private var arView: ARView
     private let arConfiguration: ARConfiguration
     
-    public var currentFrame: CVPixelBuffer? {
-        arView.session.currentFrame?.capturedImage
-    }
-    
     init(arView: ARView) {
         self.arView = arView
         
@@ -96,5 +92,35 @@ class ARManager: NSObject, ARSessionDelegate {
                 removePlaneEntity(with: planeAnchor, from: arView)
             }
         }
+    }
+    
+    public func currentCameraFrame(onFrame: (UIImage?) -> Void) {
+        onFrame(arView.session.currentFrame?.capturedImage.toUIImage())
+    }
+    
+    public func currentARFrame(onFrame: @escaping (UIImage?) -> Void) {
+        
+    }
+    
+    public func currentFrame(onFrame: @escaping (UIImage?) -> Void) {
+        arView.snapshot(saveToHDR: false) { acquiredFrame in
+            var frame: UIImage? = nil
+            
+            if let data = acquiredFrame?.pngData() {
+                frame = UIImage(data: data)
+            }
+            
+            onFrame(frame)
+        }
+    }
+    
+}
+
+extension CVPixelBuffer {
+    public func toUIImage() -> UIImage {
+        let ciImageDepth = CIImage(cvPixelBuffer: self)
+        let contextDepth = CIContext.init(options: nil)
+        let cgImageDepth = contextDepth.createCGImage(ciImageDepth, from: ciImageDepth.extent)!
+        return UIImage(cgImage: cgImageDepth, scale: 1, orientation: UIImage.Orientation.right)
     }
 }
