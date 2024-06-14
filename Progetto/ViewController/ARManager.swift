@@ -114,8 +114,11 @@ class ARManager: NSObject, ARSessionDelegate {
     }
     
     public func currentARFrame(onFrame: @escaping (UIImage?) -> Void) {
+        arView.environment.background = .color(.white)
+        
         currentFrame { frame in
-            let cameraFrame = self.arView.session.currentFrame?.capturedImage.toUIImage()
+            self.arView.environment.background = .cameraFeed()
+            onFrame(frame)
         }
     }
     
@@ -139,5 +142,26 @@ extension CVPixelBuffer {
         let contextDepth = CIContext.init(options: nil)
         let cgImageDepth = contextDepth.createCGImage(ciImageDepth, from: ciImageDepth.extent)!
         return UIImage(cgImage: cgImageDepth, scale: 1, orientation: UIImage.Orientation.right)
+    }
+}
+
+extension UIImage {
+    public func resizedTo(size newSize: CGSize) -> UIImage {
+        let availableRect = AVFoundation.AVMakeRect(
+            aspectRatio: self.size,
+            insideRect: .init(origin: .zero, size: newSize)
+        )
+        let targetSize = availableRect.size
+
+        // Set scale of renderer so that 1pt == 1px
+        let format = UIGraphicsImageRendererFormat()
+        format.scale = 1
+        let renderer = UIGraphicsImageRenderer(size: targetSize, format: format)
+
+        let resized = renderer.image { _ in
+            self.draw(in: CGRect(origin: .zero, size: targetSize))
+        }
+
+        return resized
     }
 }
