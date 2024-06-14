@@ -16,6 +16,9 @@ class ARViewController: UIViewController {
     private var objectToSpawn: ARObject?
     private var arManager: ARManager!
     
+    private let communication = CommunicationController()
+    private let synthesizer = AVSpeechSynthesizer()
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         UIApplication.shared.isIdleTimerDisabled = true
@@ -102,6 +105,20 @@ class ARViewController: UIViewController {
         arManager.currentCameraFrame { frame in
             print("Saving current camera frame to gallery")
             frame?.saveToGallery()
+            
+            guard let base64 = frame?.getBase64() else { return }
+            
+            communication.getDescription(
+                text: "Describe this image for a blind person",
+                imageBase64: base64
+            ) { text, error in
+                guard let text, error == nil else {
+                    print("Error during request: \(error ?? "")")
+                    return
+                }
+                print("Description from server: \(text)")
+                self.speak(text: text)
+            }
         }
     }
     
@@ -151,10 +168,27 @@ class ARViewController: UIViewController {
         settingsMenu.sheetPresentationController?.detents = [.large()]
         present(settingsMenu, animated: true)
     }
+    
+    private func speak(text: String) {
+        let utterance = AVSpeechUtterance(string: text)
+        utterance.voice = AVSpeechSynthesisVoice(language: "en-GB")
+        synthesizer.stopSpeaking(at: .word)
+        synthesizer.speak(utterance)
+    }
 }
 
 extension UIImage {
     public func saveToGallery() {
         UIImageWriteToSavedPhotosAlbum(self, nil, nil, nil)
+    }
+    
+    public func getBase64() -> String? {
+        let data = pngData()
+        
+        if let data {
+            return "data:image/png;base64,\(data.base64EncodedString())"
+        }
+        
+        return nil
     }
 }
