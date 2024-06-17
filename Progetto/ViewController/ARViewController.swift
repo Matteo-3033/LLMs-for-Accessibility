@@ -19,6 +19,18 @@ class ARViewController: UIViewController {
     private let communication = CommunicationController()
     private let synthesizer = AVSpeechSynthesizer()
     
+    private var prompts: [String: Any]!
+    
+    private enum LLMPrompt: String {
+        case full = "full_prompt"
+        case ar = "ar_prompt"
+        case world = "real_world_prompt"
+        
+        public func getText(_ prompts: [String: Any]) -> String {
+            return prompts[rawValue] as! String
+        }
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         UIApplication.shared.isIdleTimerDisabled = true
@@ -26,8 +38,25 @@ class ARViewController: UIViewController {
         arManager = ARManager(arView: arView)
         arManager.startSession()
         
+        initPrompts()
         initGestures()
-     }
+    }
+    
+    private func initPrompts() {
+        guard let pListPath = Bundle.main.path(
+            forResource: "prompts", ofType: "plist"
+        ) else { return }
+        
+        guard let data = FileManager.default.contents(
+            atPath: pListPath
+        ) else { return }
+        
+        guard let plist = try? PropertyListSerialization.propertyList(
+            from: data, options: .mutableContainers, format: nil
+        ) as? [String: Any] else { return }
+        
+        prompts = plist
+    }
     
     private func initGestures() {
         let oneFingerDoubleTapGestureRecognizer = UITapGestureRecognizer(
@@ -86,6 +115,7 @@ class ARViewController: UIViewController {
     @objc
     private func didTwoFingerSwipeUp(sender: UISwipeGestureRecognizer) {
         print("didTwoFingerSwipeUp")
+        showQuestionsAlert()
     }
     
     @objc
@@ -93,8 +123,8 @@ class ARViewController: UIViewController {
         print("didTwoFingerSwipeDown: frame acquisition")
         
         arManager.currentFrame { frame in
-            print("Saving current frame to gallery")
-            frame?.saveToGallery()
+            guard let frame else { return }
+            self.getImageDescription(text: LLMPrompt.full.getText(self.prompts), image: frame)
         }
     }
     
@@ -103,32 +133,84 @@ class ARViewController: UIViewController {
         print("didTwoFingerSwipeLeft: camera frame acquisition")
         
         arManager.currentCameraFrame { frame in
-            print("Saving current camera frame to gallery")
-            frame?.saveToGallery()
-            
-            guard let base64 = frame?.getBase64() else { return }
-            
-            communication.getDescription(
-                text: "Describe this image for a blind person",
-                imageBase64: base64
-            ) { text, error in
-                guard let text, error == nil else {
-                    print("Error during request: \(error ?? "")")
-                    return
-                }
-                print("Description from server: \(text)")
-                self.speak(text: text)
-            }
+            guard let frame else { return }
+            self.getImageDescription(text: LLMPrompt.world.getText(self.prompts), image: frame)
         }
     }
     
     @objc
     private func didTwoFingerSwipeRight(sender: UISwipeGestureRecognizer) {
         print("didTwoFingerSwipeRight: AR frame acquisition")
-        
+        	
         arManager.currentARFrame { frame in
-            print("Saving current AR frame to gallery")
-            frame?.saveToGallery()
+            guard let frame else { return }
+            self.getImageDescription(text: LLMPrompt.ar.getText(self.prompts), image: frame)
+        }
+    }
+    
+    private func showQuestionsAlert() {
+        arManager.currentFrame { frame in
+            guard
+                let frame,
+                let questions = self.prompts["Questions"] as? [String: String]
+            else { return }
+            
+            let alert = UIAlertController(title: "Choose question", message: "Please select a question to ask about the image", preferredStyle: .actionSheet)
+            
+            for (question, prompt) in questions {
+                alert.addAction(UIAlertAction(title: question, style: .default) { action in
+                    self.getImageDescription(text: prompt, image: frame)
+                    alert.dismiss(animated: true)
+                })
+            }
+            
+            alert.addAction(UIAlertAction(title: "Custom question", style: .default) { action in
+                alert.dismiss(animated: true)
+                self.showWriteQuestionAlert(image: frame)
+            })
+            
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+            
+            self.present(alert, animated: true)
+        }
+    }
+    
+    private func showWriteQuestionAlert(image: UIImage) {
+        let alert = UIAlertController(title: "Custom Question", message: "Please enter your question", preferredStyle: .alert)
+        
+        alert.addTextField { textField in
+            textField.placeholder = "Enter your question"
+        }
+        
+        let confirmAction = UIAlertAction(title: "Confirm", style: .default) { action in
+            if let textField = alert.textFields?.first, let question = textField.text, !question.isEmpty {
+                alert.dismiss(animated: true)
+                self.getImageDescription(text: question, image: image)
+            }
+        }
+
+        alert.addAction(confirmAction)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        
+        self.present(alert, animated: true)
+    }
+    
+    private func getImageDescription(text prompt: String, image: UIImage) {
+        image.saveToGallery()
+        
+        guard let base64 = image.getBase64() else { return }
+        
+        print("Prompt: \(prompt)")
+        communication.getDescription(
+            text: prompt,
+            imageBase64: base64
+        ) { text, error in
+            guard let text, error == nil else {
+                print("Error during request: \(error ?? "")")
+                return
+            }
+            print("Description from server: \(text)")
+            self.speak(text: text)
         }
     }
     
@@ -183,10 +265,10 @@ extension UIImage {
     }
     
     public func getBase64() -> String? {
-        let data = pngData()
+        let data = jpegData(compressionQuality: 0.5)
         
         if let data {
-            return "data:image/png;base64,\(data.base64EncodedString())"
+            return "data:image/jpeg;base64,\(data.base64EncodedString())"
         }
         
         return nil

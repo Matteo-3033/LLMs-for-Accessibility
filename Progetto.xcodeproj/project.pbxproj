@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		952E5C062C1C304400F30043 /* CommunicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952E5C052C1C304400F30043 /* CommunicationController.swift */; };
+		95E16BCD2C201469002BDF6C /* prompts.plist in Resources */ = {isa = PBXBuildFile; fileRef = 95E16BCC2C201469002BDF6C /* prompts.plist */; };
 		AF3C9E172C1859B500C9332D /* ARViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF3C9E162C1859B500C9332D /* ARViewController.xib */; };
 		AF5DC4D02C17121700549312 /* ProgettoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5DC4CF2C17121700549312 /* ProgettoApp.swift */; };
 		AF5DC4D42C17121800549312 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF5DC4D32C17121800549312 /* Assets.xcassets */; };
@@ -63,6 +64,7 @@
 
 /* Begin PBXFileReference section */
 		952E5C052C1C304400F30043 /* CommunicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationController.swift; sourceTree = "<group>"; };
+		95E16BCC2C201469002BDF6C /* prompts.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = prompts.plist; sourceTree = "<group>"; };
 		AF3C9E162C1859B500C9332D /* ARViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ARViewController.xib; sourceTree = "<group>"; };
 		AF5DC4CC2C17121700549312 /* Progetto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Progetto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF5DC4CF2C17121700549312 /* ProgettoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgettoApp.swift; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 		AF5DC4C32C17121700549312 = {
 			isa = PBXGroup;
 			children = (
+				95E16BCC2C201469002BDF6C /* prompts.plist */,
 				AF5DC4CE2C17121700549312 /* Progetto */,
 				AF5DC4CD2C17121700549312 /* Products */,
 			);
@@ -383,6 +386,7 @@
 				AF7D86432C18815700789739 /* chair_swan copy 13.usdz in Resources */,
 				AF7D85FF2C18813000789739 /* tv_retro copy 8.usdz in Resources */,
 				AF7D85F62C18813000789739 /* tv_retro copy 3.usdz in Resources */,
+				95E16BCD2C201469002BDF6C /* prompts.plist in Resources */,
 				AF7D86462C18815700789739 /* tv_retro copy 4.usdz in Resources */,
 				AF7D863D2C18815700789739 /* chair_swan copy 14.usdz in Resources */,
 				AF7D86532C18815700789739 /* chair_swan copy 11.usdz in Resources */,

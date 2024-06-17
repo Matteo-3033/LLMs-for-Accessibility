@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ar_prompt</key>
+	<string>This is a picture of the 3D virtual elements created by an AR phone application. I cannot see them; help me understand what&apos;s around me. Give me a description of the 3D elements of the image as it was their alt text. Just describe the foreground</string>
+    <key>full_prompt</key>
+    <string>This is a picture of the environment around me taken from an ar application. The image contains real objects and virtual ones. I cannot see them; describe what's in the environment and the relationships between objects. Just describe what's around me as it was the alt text of the image. Provide me with enough information and details to navigate the environment</string>
+    <key>real_world_prompt</key>
+    <string>This is a picture of the environment around me. I cannot see it. Describe what's in the environment and the relationships between objects. Just describe what's around me objectively as it was the alt text of the image. Provide me with enough information and details to navigate the environment</string>
+	<key>Questions</key>
+	<dict>
+		<key>What&apos;s on the foreground?</key>
+		<string>What&apos;s on the foreground?</string>
+	</dict>
+</dict>
+</plist>
