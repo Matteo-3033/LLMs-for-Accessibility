@@ -4,14 +4,18 @@
 <dict>
 	<key>ar_prompt</key>
 	<string>This is a picture of the 3D virtual elements created by an AR phone application. I cannot see them; help me understand what&apos;s around me. Give me a description of the 3D elements of the image as it was their alt text. Just describe the foreground</string>
-    <key>full_prompt</key>
-    <string>This is a picture of the environment around me taken from an ar application. The image contains real objects and virtual ones. I cannot see them; describe what's in the environment and the relationships between objects. Just describe what's around me as it was the alt text of the image. Provide me with enough information and details to navigate the environment</string>
-    <key>real_world_prompt</key>
-    <string>This is a picture of the environment around me. I cannot see it. Describe what's in the environment and the relationships between objects. Just describe what's around me objectively as it was the alt text of the image. Provide me with enough information and details to navigate the environment</string>
+	<key>full_prompt</key>
+	<string>This is a picture of the environment around me taken from an AR application. The image contains real objects and virtual ones. I cannot see them; describe what&apos;s in the environment and the relationships between objects. Just describe what&apos;s around me as it was the alt text of the image. Provide me with enough information and details to navigate the environment</string>
+	<key>real_world_prompt</key>
+	<string>This is a picture of the environment around me. I cannot see it. Describe what&apos;s in the environment and the relationships between objects. Just describe what&apos;s around me objectively as it was the alt text of the image. Provide me with enough information and details to navigate the environment</string>
 	<key>Questions</key>
 	<dict>
 		<key>What&apos;s on the foreground?</key>
-		<string>What&apos;s on the foreground?</string>
+		<string>This is a picture of the environment around me taken from an AR application. The image contains real objects and virtual ones. I cannot see them; what&apos;s on the foreground? Give me a description in the form of an alt text for the image.</string>
+		<key>What&apos;s on the background?</key>
+		<string>This is a picture of the environment around me taken from an AR application. The image contains real objects and virtual ones. I cannot see them; what&apos;s on the background? Give me a description in the form of an alt text for the image.</string>
+		<key>Is there any obstacle on my path?</key>
+		<string>This is a picture of the environment around me taken from an AR application. The image contains real objects and virtual ones. I cannot see them; is there any object on my path?</string>
 	</dict>
 </dict>
 </plist>

@@ -157,9 +157,11 @@ class ARViewController: UIViewController {
                 let questions = self.prompts["Questions"] as? [String: String]
             else { return }
             
-            let alert = UIAlertController(title: "Choose question", message: "Please select a question to ask about the image", preferredStyle: .actionSheet)
+            let alert = UIAlertController(title: "Choose question", message: "Please select a question to ask", preferredStyle: .actionSheet)
             
-            for (question, prompt) in questions {
+            let sortedQuestions = questions.sorted { $0.key < $1.key }
+            
+            for (question, prompt) in sortedQuestions {
                 alert.addAction(UIAlertAction(title: question, style: .default) { action in
                     self.getImageDescription(text: prompt, image: frame)
                     alert.dismiss(animated: true)
@@ -168,7 +170,7 @@ class ARViewController: UIViewController {
             
             alert.addAction(UIAlertAction(title: "Custom question", style: .default) { action in
                 alert.dismiss(animated: true)
-                self.showWriteQuestionAlert(image: frame)
+                self.showCustomQuestionAlert(image: frame)
             })
             
             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
@@ -177,7 +179,7 @@ class ARViewController: UIViewController {
         }
     }
     
-    private func showWriteQuestionAlert(image: UIImage) {
+    private func showCustomQuestionAlert(image: UIImage) {
         let alert = UIAlertController(title: "Custom Question", message: "Please enter your question", preferredStyle: .alert)
         
         alert.addTextField { textField in
