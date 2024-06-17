@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -54,6 +55,21 @@
                         <action selector="didTapOnAddObject:" destination="-1" eventType="touchUpInside" id="ZUE-UT-9Bz"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yPr-4P-3Pw" userLabel="Save session">
+                    <rect key="frame" x="215.66666666666666" y="773" width="51.999999999999972" height="35"/>
+                    <accessibility key="accessibilityConfiguration" label="Add object"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="1XE-r0-llY"/>
+                    </constraints>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain">
+                        <imageReference key="image" image="square.and.arrow.down.fill" catalog="system" symbolScale="default" variableValue="1"/>
+                        <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="25"/>
+                    </buttonConfiguration>
+                    <connections>
+                        <action selector="didTapOnSave:" destination="-1" eventType="touchUpInside" id="1Fe-ib-RML"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -61,7 +77,9 @@
                 <constraint firstItem="nos-ev-9OT" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" constant="-10" id="5dY-4n-S1Q"/>
                 <constraint firstItem="nos-ev-9OT" firstAttribute="leading" secondItem="KSd-cq-FQj" secondAttribute="trailing" constant="4" id="8gL-32-wCi"/>
                 <constraint firstItem="nos-ev-9OT" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" constant="-10" id="BuX-74-lDy"/>
+                <constraint firstItem="KSd-cq-FQj" firstAttribute="leading" secondItem="yPr-4P-3Pw" secondAttribute="trailing" constant="4" id="Ocq-Ns-Lnj"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="KSd-cq-FQj" secondAttribute="bottom" constant="10" id="c6p-du-oJj"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="yPr-4P-3Pw" secondAttribute="bottom" constant="10" id="pWI-gz-gH9"/>
             </constraints>
             <point key="canvasLocation" x="136.64122137404578" y="19.718309859154932"/>
         </view>
@@ -69,6 +87,7 @@
     <resources>
         <image name="gear.circle.fill" catalog="system" width="128" height="123"/>
         <image name="plus.circle.fill" catalog="system" width="128" height="123"/>
+        <image name="square.and.arrow.down.fill" catalog="system" width="121" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

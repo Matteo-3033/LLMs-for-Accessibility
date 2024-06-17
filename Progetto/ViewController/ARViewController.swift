@@ -21,6 +21,8 @@ class ARViewController: UIViewController {
     
     private var prompts: [String: Any]!
     
+    private var session: [(String, String, String)] = []
+    
     private enum LLMPrompt: String {
         case full = "full_prompt"
         case ar = "ar_prompt"
@@ -211,6 +213,12 @@ class ARViewController: UIViewController {
             }
             print("Description from server: \(text)")
             self.speak(text: text)
+            
+            self.session.append((
+                prompt,
+                text,
+                base64
+            ))
         }
     }
     
@@ -249,6 +257,47 @@ class ARViewController: UIViewController {
         settingsMenu.isModalInPresentation = false
         settingsMenu.sheetPresentationController?.detents = [.large()]
         present(settingsMenu, animated: true)
+    }
+    
+    @IBAction func didTapOnSave(_ sender: Any) {
+        print("didTapOnSave")
+        
+        DispatchQueue.global(qos: .background).async {
+            var content = ""
+            for tuple in self.session {
+                content += "\(tuple.0),\n \(tuple.1),\n \(tuple.2)\n\n"
+            }
+        
+            if let documentDirectory = FileManager.default.urls(
+                for: .documentDirectory, in: .userDomainMask
+            ).first {
+                let currentDate = Date()
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd_HH-mm-ss"
+                let timestamp = dateFormatter.string(from: currentDate)
+
+                let fileName = "session_\(timestamp).txt"
+                
+                let fileURL = URL(
+                    fileURLWithPath: fileName, relativeTo: documentDirectory
+                ).appendingPathExtension("txt")
+                
+                do {
+                    try content.write(to: fileURL, atomically: true, encoding: .utf8)
+                    print("File written successfully to \(fileURL.path)")
+                    
+                    DispatchQueue.main.async {
+                        let activityViewController = UIActivityViewController(activityItems: [fileURL], applicationActivities: nil)
+                        self.present(activityViewController, animated: true, completion: nil)
+                    }
+                } catch {
+                    print("Failed to write file: \(error)")
+                }
+            } else {
+                print("Failed to find the document directory")
+            }
+        }
+        
     }
     
     private func speak(text: String) {
