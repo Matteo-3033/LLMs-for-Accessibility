@@ -5,17 +5,28 @@
 	<key>ar_prompt</key>
 	<string>This is a picture of the 3D virtual elements created by an AR phone application. I cannot see them; help me understand what&apos;s around me. Give me a description of the 3D elements of the image as it was their alt text. Just describe the foreground</string>
 	<key>full_prompt</key>
-	<string>This is a picture of the environment around me taken from an AR application. The image contains real objects and virtual ones. I cannot see them; describe what&apos;s in the environment and the relationships between objects. Just describe what&apos;s around me as it was the alt text of the image. Provide me with enough information and details to navigate the environment</string>
+	<string>This is a picture of the environment around me taken from an AR application. The image contains real objects and virtual ones. I cannot see them; describe what&apos;s in the environment and the relationships between objects. Just describe what&apos;s around me as it was the alt text of the image.</string>
 	<key>real_world_prompt</key>
-	<string>This is a picture of the environment around me. I cannot see it. Describe what&apos;s in the environment and the relationships between objects. Just describe what&apos;s around me objectively as it was the alt text of the image. Provide me with enough information and details to navigate the environment</string>
-	<key>Questions</key>
-	<dict>
-		<key>What&apos;s on the foreground?</key>
-		<string>This is a picture of the environment around me taken from an AR application. The image contains real objects and virtual ones. I cannot see them; what&apos;s on the foreground? Give me a description in the form of an alt text for the image.</string>
-		<key>What&apos;s on the background?</key>
-		<string>This is a picture of the environment around me taken from an AR application. The image contains real objects and virtual ones. I cannot see them; what&apos;s on the background? Give me a description in the form of an alt text for the image.</string>
-		<key>Is there any obstacle on my path?</key>
-		<string>This is a picture of the environment around me taken from an AR application. The image contains real objects and virtual ones. I cannot see them; is there any object on my path?</string>
-	</dict>
+	<string>This is a picture of the environment around me. I cannot see it. Describe what&apos;s in the environment and the relationships between objects. Give me a description in the form of an alt text for the image foreground. Provide me with enough information and details to navigate the environment. Answer with the description only</string>
+	<key>foreground</key>
+	<array>
+		<string>What&apos;s in the foreground?</string>
+		<string>This is a picture of the environment around me taken from an AR application. The image contains real objects and virtual ones. I cannot see them; what&apos;s in the foreground? Give me a description in the form of an alt text for the image foreground. Answer with the description only</string>
+	</array>
+	<key>background</key>
+	<array>
+		<string>What&apos;s in the background?</string>
+		<string>This is a picture of the environment around me taken from an AR application. The image contains real objects and virtual ones. I cannot see them; what&apos;s in the background? Give me a description in the form of an alt text for the image background. Answer with the description only</string>
+	</array>
+	<key>obstacles</key>
+	<array>
+		<string>Is there any obstacle on my path?</string>
+		<string>This is a picture of the environment around me taken from an AR application. The image contains real objects and virtual ones. I cannot see them; is there any significant obstacle on my path? Briefly describe detected obstacles</string>
+	</array>
+	<key>color</key>
+	<array>
+		<string>What color is this object?</string>
+		<string>This is a picture of the environment around me. I cannot see it. What&apos;s the color of the object framed by a black rectangle? Answer with the color only or, if it is multicolored, with a brief description focused on its colors</string>
+	</array>
 </dict>
 </plist>
