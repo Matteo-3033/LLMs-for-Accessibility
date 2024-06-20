@@ -21,6 +21,8 @@ class ARManager: NSObject, ARSessionDelegate {
     private var arView: ARView
     private let arConfiguration: ARConfiguration
     
+    private var objs: [UUID: simd_float4x4] = [:]
+    
     init(arView: ARView) {
         self.arView = arView
         
@@ -57,11 +59,13 @@ class ARManager: NSObject, ARSessionDelegate {
         
         arView.session.add(anchor: arAnchor)
         arView.scene.addAnchor(anchorEntity)
+        objs[arAnchor.identifier] = transform
     }
     
     public func stopSession() {
         arView.session.pause()
         arView.session.delegate = nil
+        objs.removeAll()
     }
     
     private func updateObjAnchor(anchor: ARObjectAnchor, camera: simd_float4x4) {
@@ -134,6 +138,13 @@ class ARManager: NSObject, ARSessionDelegate {
         }
     }
     
+    public func getNearestAnchor(transform: simd_float4x4) -> ARAnchor? {
+        let position = transform.position
+        
+        return arView.session.currentFrame?.anchors.min {
+            position.distance(to: $0.transform.position) < position.distance(to: $1.transform.position)
+        }
+    }
 }
 
 extension CVPixelBuffer {
@@ -163,5 +174,25 @@ extension UIImage {
         }
 
         return resized
+    }
+}
+
+extension simd_float4x4 {
+    public var position: simd_float3 {
+        return SIMD3<Float>(
+            columns.3.x,
+            columns.3.y,
+            columns.3.z
+        )
+    }
+}
+
+extension simd_float3 {
+    public func distance(to: simd_float3) -> Float {
+        return sqrt(
+            (x - to.x) * (x - to.x) +
+            (y - to.y) * (y - to.y) +
+            (z - to.z) * (z - to.z)
+        )
     }
 }

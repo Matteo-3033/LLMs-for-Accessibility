@@ -23,13 +23,28 @@ class ARViewController: UIViewController {
     
     private var session: [(String, String, String)] = []
     
-    private enum LLMPrompt: String {
+    let objectSelectedNotification = NSNotification.Name(rawValue: "objectSelected")
+    private var selection: [ARAnchor] = []
+    
+    private enum LLMGeneralPrompt: String {
         case full = "full_prompt"
         case ar = "ar_prompt"
         case world = "real_world_prompt"
         
         public func getText(_ prompts: [String: Any]) -> String {
             return prompts[rawValue] as! String
+        }
+    }
+    
+    private enum LLMQuestionPrompt: String, CaseIterable {
+        case background = "background"
+        case foreground = "foreground"
+        case obstacles = "obstacles"
+        case color = "color"
+        
+        public func getPrompt(_ prompts: [String: Any]) -> (String, String) {
+            let array = prompts[rawValue] as! [String]
+            return (array[0], array[1])
         }
     }
     
@@ -97,6 +112,17 @@ class ARViewController: UIViewController {
     @objc
     private func didOneFingerDoubleTap(sender: UITapGestureRecognizer) {
         print("didOneFingerDoubleTap")
+        
+        guard let transform = arView.raycast(
+            from: sender.location(in: self.arView),
+            allowing: .estimatedPlane, alignment: .any
+        ).first?.worldTransform else { return }
+            
+        let anchor = arManager.getNearestAnchor(transform: transform)
+        if let anchor, !selection.contains(where: { $0.identifier == anchor.identifier }) {
+            selection.append(anchor)
+            NotificationCenter.default.post(name: objectSelectedNotification, object: nil, userInfo: nil)
+        }
     }
     
     @objc
@@ -126,7 +152,7 @@ class ARViewController: UIViewController {
         
         arManager.currentFrame { frame in
             guard let frame else { return }
-            self.getImageDescription(text: LLMPrompt.full.getText(self.prompts), image: frame)
+            self.getImageDescription(text: LLMGeneralPrompt.full.getText(self.prompts), image: frame)
         }
     }
     
@@ -136,7 +162,7 @@ class ARViewController: UIViewController {
         
         arManager.currentCameraFrame { frame in
             guard let frame else { return }
-            self.getImageDescription(text: LLMPrompt.world.getText(self.prompts), image: frame)
+            self.getImageDescription(text: LLMGeneralPrompt.world.getText(self.prompts), image: frame)
         }
     }
     
@@ -146,37 +172,33 @@ class ARViewController: UIViewController {
         	
         arManager.currentARFrame { frame in
             guard let frame else { return }
-            self.getImageDescription(text: LLMPrompt.ar.getText(self.prompts), image: frame)
+            self.getImageDescription(text: LLMGeneralPrompt.ar.getText(self.prompts), image: frame)
         }
     }
     
     private func showQuestionsAlert() {
-        arManager.currentFrame { frame in
-            guard
-                let frame,
-                let questions = self.prompts["Questions"] as? [String: String]
-            else { return }
+        let alert = UIAlertController(title: "Choose question", message: "Please select a question to ask", preferredStyle: .actionSheet)
+        
+        for p in LLMQuestionPrompt.allCases {
+            let (question, prompt) = p.getPrompt(prompts)
             
-            let alert = UIAlertController(title: "Choose question", message: "Please select a question to ask", preferredStyle: .actionSheet)
-            
-            let sortedQuestions = questions.sorted { $0.key < $1.key }
-            
-            for (question, prompt) in sortedQuestions {
-                alert.addAction(UIAlertAction(title: question, style: .default) { action in
-                    self.getImageDescription(text: prompt, image: frame)
-                    alert.dismiss(animated: true)
-                })
-            }
-            
-            alert.addAction(UIAlertAction(title: "Custom question", style: .default) { action in
+            alert.addAction(UIAlertAction(title: question, style: .default) { action in
+                alert.dismiss(animated: true)
+                self.handleQuestion(question: p, prompt: prompt)
+            })
+        }
+        
+        alert.addAction(UIAlertAction(title: "Custom question", style: .default) { action in
+            self.arManager.currentFrame { frame in
+                guard let frame else { return }
                 alert.dismiss(animated: true)
                 self.showCustomQuestionAlert(image: frame)
-            })
-            
-            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-            
-            self.present(alert, animated: true)
-        }
+            }
+        })
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        
+        self.present(alert, animated: true)
     }
     
     private func showCustomQuestionAlert(image: UIImage) {
@@ -197,6 +219,32 @@ class ARViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         
         self.present(alert, animated: true)
+    }
+    
+    private func handleQuestion(question: LLMQuestionPrompt, prompt: String) {
+        let method: Selector? = switch question {
+        case .color: #selector(handleColorQuestion(notification:))
+        default: nil
+        }
+        
+        if let method {
+            NotificationCenter.default.addObserver(self, selector: method, name: objectSelectedNotification, object: nil)
+        } else {
+            arManager.currentFrame { frame in
+                guard let frame else { return }
+                self.getImageDescription(text: prompt, image: frame)
+            }
+        }
+    }
+    
+    @objc
+    private func handleColorQuestion(notification: NSNotification) {
+        guard let obj = selection.first else { return }
+        selection.removeAll()
+        NotificationCenter.default.removeObserver(self)
+        
+        
+        
     }
     
     private func getImageDescription(text prompt: String, image: UIImage) {
@@ -278,7 +326,7 @@ class ARViewController: UIViewController {
                 dateFormatter.dateFormat = "yyyy-MM-dd_HH-mm-ss"
                 let timestamp = dateFormatter.string(from: currentDate)
 
-                let fileName = "session_\(timestamp).txt"
+                let fileName = "session_\(timestamp)"
                 
                 let fileURL = URL(
                     fileURLWithPath: fileName, relativeTo: documentDirectory
