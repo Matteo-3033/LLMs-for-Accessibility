@@ -23,8 +23,11 @@ class ARViewController: UIViewController {
     
     private var session: [(String, String, String)] = []
     
-    let objectSelectedNotification = NSNotification.Name(rawValue: "objectSelected")
+    private var waitingSelection = false
     private var selection: [ARAnchor] = []
+    private let objectSelectedNotification = NSNotification.Name(
+        rawValue: "objectSelected"
+    )
     
     private enum LLMGeneralPrompt: String {
         case full = "full_prompt"
@@ -88,22 +91,30 @@ class ARViewController: UIViewController {
         )
         arView.addGestureRecognizer(oneFingerLongTapGestureRecognizer)
         
-        let twoFingerSwipeUpGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(didTwoFingerSwipeUp(sender:)))
+        let twoFingerSwipeUpGestureRecognizer = UISwipeGestureRecognizer(target:
+            self, action: #selector(didTwoFingerSwipeUp(sender:))
+        )
         twoFingerSwipeUpGestureRecognizer.direction = .up
         twoFingerSwipeUpGestureRecognizer.numberOfTouchesRequired = 2
         arView.addGestureRecognizer(twoFingerSwipeUpGestureRecognizer)
         
-        let twoFingerSwipeDownGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(didTwoFingerSwipeDown(sender:)))
+        let twoFingerSwipeDownGestureRecognizer = UISwipeGestureRecognizer(
+            target: self, action: #selector(didTwoFingerSwipeDown(sender:))
+        )
         twoFingerSwipeDownGestureRecognizer.direction = .down
         twoFingerSwipeDownGestureRecognizer.numberOfTouchesRequired = 2
         arView.addGestureRecognizer(twoFingerSwipeDownGestureRecognizer)
         
-        let twoFingerSwipeLeftGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(didTwoFingerSwipeLeft(sender:)))
+        let twoFingerSwipeLeftGestureRecognizer = UISwipeGestureRecognizer(
+            target: self, action: #selector(didTwoFingerSwipeLeft(sender:))
+        )
         twoFingerSwipeLeftGestureRecognizer.direction = .left
         twoFingerSwipeLeftGestureRecognizer.numberOfTouchesRequired = 2
         arView.addGestureRecognizer(twoFingerSwipeLeftGestureRecognizer)
         
-        let twoFingerSwipeRightGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(didTwoFingerSwipeRight(sender:)))
+        let twoFingerSwipeRightGestureRecognizer = UISwipeGestureRecognizer(
+            target: self, action: #selector(didTwoFingerSwipeRight(sender:))
+        )
         twoFingerSwipeRightGestureRecognizer.direction = .right
         twoFingerSwipeRightGestureRecognizer.numberOfTouchesRequired = 2
         arView.addGestureRecognizer(twoFingerSwipeRightGestureRecognizer)
@@ -202,7 +213,7 @@ class ARViewController: UIViewController {
     }
     
     private func showCustomQuestionAlert(image: UIImage) {
-        let alert = UIAlertController(title: "Custom Question", message: "Please enter your question", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Custom Question", message: "Please, enter your question", preferredStyle: .alert)
         
         alert.addTextField { textField in
             textField.placeholder = "Enter your question"
@@ -228,6 +239,7 @@ class ARViewController: UIViewController {
         }
         
         if let method {
+            waitingSelection = true
             NotificationCenter.default.addObserver(self, selector: method, name: objectSelectedNotification, object: nil)
         } else {
             arManager.currentFrame { frame in
@@ -239,12 +251,18 @@ class ARViewController: UIViewController {
     
     @objc
     private func handleColorQuestion(notification: NSNotification) {
+        print("handleColorQuestion")
         guard let obj = selection.first else { return }
         selection.removeAll()
+        waitingSelection = false
         NotificationCenter.default.removeObserver(self)
         
-        
-        
+        arManager.currentFrame { frame in
+            guard let frame else { return }
+            
+            let prompt = LLMQuestionPrompt.color.getPrompt(self.prompts).1
+            self.getImageDescription(text: prompt, image: frame)
+        }
     }
     
     private func getImageDescription(text prompt: String, image: UIImage) {
@@ -261,7 +279,7 @@ class ARViewController: UIViewController {
                 print("Error during request: \(error ?? "")")
                 return
             }
-            print("Description from server: \(text)")
+            print("Description from LLM : \(text)")
             self.speak(text: text)
             
             self.session.append((
@@ -278,6 +296,9 @@ class ARViewController: UIViewController {
         arView.gestureRecognizers?.removeAll()
         arManager.stopSession()
         arManager = nil
+        
+        selection.removeAll()
+        waitingSelection = false
     }
     
     @IBAction func didTapOnAddObject(_ sender: Any) {
