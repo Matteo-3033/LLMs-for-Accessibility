@@ -8,10 +8,12 @@
 import Foundation
 
 struct CommunicationController {
-    private static let SERVER_URL = "https://develop.ewlab.di.unimi.it/descripix"
+    private static let API_KEY = "sk-proj-pnOaxK5PclXhjPrOGqTRT3BlbkFJPGhGv4jHrFVccEsfoQAe"
+    private static let SERVER_URL = "https://api.openai.com"
+        // "https://develop.ewlab.di.unimi.it/descripix"
     
     private enum Endpoint: String {
-        case predict = "predict"
+        case predict = "/v1/chat/completions"   // "predict"
     }
     
     private enum RequestError: Error {
@@ -36,10 +38,31 @@ struct CommunicationController {
         var request = URLRequest(url: getURL(endpoint: .predict))
         request.httpMethod = HttpMethod.post.rawValue
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue(
+            "Bearer \(CommunicationController.API_KEY)",
+            forHTTPHeaderField: "Authorization"
+        )
         
-        let json = [
-            "text": text,
-            "image": imageBase64
+        let json: [String: Any] = [
+            "model": "gpt-4o",
+            "messages": [
+                [
+                    "role": "user",
+                    "content": [
+                        [
+                            "type": "text",
+                            "text": text
+                        ],
+                        [
+                            "type": "image_url",
+                            "image_url": [
+                                "url": imageBase64
+                            ]
+                        ]
+                    ]
+                ]
+            ],
+            "max_tokens": 500
         ]
         let jsonData = try? JSONSerialization.data(withJSONObject: json)
         request.httpBody = jsonData
@@ -49,13 +72,18 @@ struct CommunicationController {
                 onResult(nil, error)
                 return
             }
-            
+
             do {
                 if let jsonResponse = try JSONSerialization.jsonObject(
                     with: body, options: []
-                ) as? [String: Any],
-                   let generatedText = jsonResponse["generated_text"] as? String {
-                    onResult(generatedText, nil)
+                ) as? [String: Any] {
+                    if let choices = jsonResponse["choices"] as? [[String: Any]], let choice = choices.first {
+                        if let message = choice["message"] as? [String: Any] {
+                            if let text = message["content"] as? String {
+                                onResult(text, nil)
+                            }
+                        }
+                    }
                 } else {
                     onResult(nil, ResponseError.bodyDecodingError)
                 }
