@@ -7,7 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		951F35702C296D450061DB17 /* TrackedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951F356F2C296D450061DB17 /* TrackedObject.swift */; };
 		952E5C062C1C304400F30043 /* CommunicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952E5C052C1C304400F30043 /* CommunicationController.swift */; };
+		95BDC7252C240A760059A658 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BDC7192C240A760059A658 /* Extensions.swift */; };
+		95BDC7262C240A760059A658 /* IndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BDC71A2C240A760059A658 /* IndicatorView.swift */; };
+		95BDC7292C240A760059A658 /* Planes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BDC71D2C240A760059A658 /* Planes.swift */; };
 		95E16BCD2C201469002BDF6C /* prompts.plist in Resources */ = {isa = PBXBuildFile; fileRef = 95E16BCC2C201469002BDF6C /* prompts.plist */; };
 		AF3C9E172C1859B500C9332D /* ARViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF3C9E162C1859B500C9332D /* ARViewController.xib */; };
 		AF5DC4D02C17121700549312 /* ProgettoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5DC4CF2C17121700549312 /* ProgettoApp.swift */; };
@@ -16,7 +20,6 @@
 		AF5DC4E02C17188100549312 /* ARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5DC4DF2C17188100549312 /* ARViewController.swift */; };
 		AF7BE4D82C197CCF00A47958 /* ARManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7BE4D72C197CCF00A47958 /* ARManager.swift */; };
 		AF7BE4DA2C19908700A47958 /* ARObjectAnchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7BE4D92C19908700A47958 /* ARObjectAnchor.swift */; };
-		AF7BE4DC2C199C7000A47958 /* Planes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7BE4DB2C199C7000A47958 /* Planes.swift */; };
 		AF7D85D32C18730200789739 /* SelectObjectMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7D85D22C18730200789739 /* SelectObjectMenu.swift */; };
 		AF7D85D52C18749700789739 /* ARObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7D85D42C18749700789739 /* ARObject.swift */; };
 		AF7D85D72C18756200789739 /* SettingsMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7D85D62C18756200789739 /* SettingsMenu.swift */; };
@@ -63,7 +66,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		951F356F2C296D450061DB17 /* TrackedObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackedObject.swift; sourceTree = "<group>"; };
 		952E5C052C1C304400F30043 /* CommunicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationController.swift; sourceTree = "<group>"; };
+		95BDC7192C240A760059A658 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		95BDC71A2C240A760059A658 /* IndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndicatorView.swift; sourceTree = "<group>"; };
+		95BDC71D2C240A760059A658 /* Planes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Planes.swift; sourceTree = "<group>"; };
 		95E16BCC2C201469002BDF6C /* prompts.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = prompts.plist; sourceTree = "<group>"; };
 		AF3C9E162C1859B500C9332D /* ARViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ARViewController.xib; sourceTree = "<group>"; };
 		AF5DC4CC2C17121700549312 /* Progetto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Progetto.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -73,7 +80,6 @@
 		AF5DC4DF2C17188100549312 /* ARViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewController.swift; sourceTree = "<group>"; };
 		AF7BE4D72C197CCF00A47958 /* ARManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARManager.swift; sourceTree = "<group>"; };
 		AF7BE4D92C19908700A47958 /* ARObjectAnchor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARObjectAnchor.swift; sourceTree = "<group>"; };
-		AF7BE4DB2C199C7000A47958 /* Planes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Planes.swift; sourceTree = "<group>"; };
 		AF7D85D22C18730200789739 /* SelectObjectMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectObjectMenu.swift; sourceTree = "<group>"; };
 		AF7D85D42C18749700789739 /* ARObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARObject.swift; sourceTree = "<group>"; };
 		AF7D85D62C18756200789739 /* SettingsMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsMenu.swift; sourceTree = "<group>"; };
@@ -152,6 +158,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		95BDC72E2C240F710059A658 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				95BDC7192C240A760059A658 /* Extensions.swift */,
+				95BDC71A2C240A760059A658 /* IndicatorView.swift */,
+				95BDC71D2C240A760059A658 /* Planes.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		AF5DC4C32C17121700549312 = {
 			isa = PBXGroup;
 			children = (
@@ -188,14 +204,6 @@
 				AF5DC4D62C17121800549312 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		AF7BE4DD2C199C8600A47958 /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-				AF7BE4DB2C199C7000A47958 /* Planes.swift */,
-			);
-			path = Utils;
 			sourceTree = "<group>";
 		};
 		AF7D85D82C18769400789739 /* Objects */ = {
@@ -273,6 +281,7 @@
 				AF7D85D42C18749700789739 /* ARObject.swift */,
 				AF7BE4D92C19908700A47958 /* ARObjectAnchor.swift */,
 				952E5C052C1C304400F30043 /* CommunicationController.swift */,
+				951F356F2C296D450061DB17 /* TrackedObject.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -280,7 +289,7 @@
 		AF7D85DA2C1876F700789739 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				AF7BE4DD2C199C8600A47958 /* Utils */,
+				95BDC72E2C240F710059A658 /* Utils */,
 				AF7D85DB2C18773900789739 /* Menus */,
 				AF5DC4DF2C17188100549312 /* ARViewController.swift */,
 				AF3C9E162C1859B500C9332D /* ARViewController.xib */,
@@ -416,13 +425,16 @@
 			files = (
 				AF7D85D72C18756200789739 /* SettingsMenu.swift in Sources */,
 				AF7BE4DA2C19908700A47958 /* ARObjectAnchor.swift in Sources */,
-				AF7BE4DC2C199C7000A47958 /* Planes.swift in Sources */,
 				AF7D85D52C18749700789739 /* ARObject.swift in Sources */,
+				951F35702C296D450061DB17 /* TrackedObject.swift in Sources */,
+				95BDC7262C240A760059A658 /* IndicatorView.swift in Sources */,
 				952E5C062C1C304400F30043 /* CommunicationController.swift in Sources */,
 				AF7D85D32C18730200789739 /* SelectObjectMenu.swift in Sources */,
 				AF5DC4D02C17121700549312 /* ProgettoApp.swift in Sources */,
 				AF7BE4D82C197CCF00A47958 /* ARManager.swift in Sources */,
+				95BDC7292C240A760059A658 /* Planes.swift in Sources */,
 				AF5DC4E02C17188100549312 /* ARViewController.swift in Sources */,
+				95BDC7252C240A760059A658 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

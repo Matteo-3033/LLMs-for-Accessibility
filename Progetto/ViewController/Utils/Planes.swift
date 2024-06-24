@@ -8,7 +8,7 @@
 import ARKit
 import RealityKit
 
-func addPlaneEntity(with anchor: ARPlaneAnchor, to view: ARView) {
+func addPlaneEntity(with anchor: ARPlaneAnchor, to view: ARView) -> (Entity, AnchorEntity) {
     let planeAnchorEntity = AnchorEntity(.plane([.any],
                                     classification: [.any],
                                     minimumBounds: [0.5, 0.5]))
@@ -17,23 +17,25 @@ func addPlaneEntity(with anchor: ARPlaneAnchor, to view: ARView) {
     planeModelEntity.name = anchor.identifier.uuidString + "_model"
     planeAnchorEntity.addChild(planeModelEntity)
     view.scene.addAnchor(planeAnchorEntity)
+    
+    return (planeModelEntity, planeAnchorEntity)
 }
 
 func createPlaneModelEntity(with anchor: ARPlaneAnchor) -> ModelEntity {
     var planeMesh: MeshResource
-    var color: UIColor
-    
-    if anchor.alignment == .horizontal {
-        color = UIColor.blue.withAlphaComponent(0.5)
-        planeMesh = .generatePlane(width: anchor.planeExtent.width, depth: anchor.planeExtent.height)
-    } else if anchor.alignment == .vertical {
-        color = UIColor.yellow.withAlphaComponent(0.5)
-        planeMesh = .generatePlane(width: anchor.planeExtent.width, height: anchor.planeExtent.height)
-    } else {
-        fatalError("Anchor is not ARPlaneAnchor")
-    }
-    
-    return ModelEntity(mesh: planeMesh, materials: [SimpleMaterial(color: color, roughness: 0.25, isMetallic: false)])
+        var color: UIColor
+        
+        if anchor.alignment == .horizontal {
+            color = UIColor.blue.withAlphaComponent(0.5)
+            planeMesh = .generatePlane(width: anchor.planeExtent.width, depth: anchor.planeExtent.height)
+        } else if anchor.alignment == .vertical {
+            color = UIColor.yellow.withAlphaComponent(0.5)
+            planeMesh = .generatePlane(width: anchor.planeExtent.width, height: anchor.planeExtent.height)
+        } else {
+            fatalError("Anchor is not ARPlaneAnchor")
+        }
+        
+        return ModelEntity(mesh: planeMesh, materials: [SimpleMaterial(color: color, roughness: 0.25, isMetallic: false)])
 }
 
 func removePlaneEntity(with anchor: ARPlaneAnchor, from arView: ARView) {

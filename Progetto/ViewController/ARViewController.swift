@@ -92,7 +92,7 @@ class ARViewController: UIViewController {
         arView.addGestureRecognizer(oneFingerLongTapGestureRecognizer)
         
         let twoFingerSwipeUpGestureRecognizer = UISwipeGestureRecognizer(target:
-            self, action: #selector(didTwoFingerSwipeUp(sender:))
+                                                                            self, action: #selector(didTwoFingerSwipeUp(sender:))
         )
         twoFingerSwipeUpGestureRecognizer.direction = .up
         twoFingerSwipeUpGestureRecognizer.numberOfTouchesRequired = 2
@@ -122,23 +122,20 @@ class ARViewController: UIViewController {
     
     @objc
     private func didOneFingerDoubleTap(sender: UITapGestureRecognizer) {
-        print("didOneFingerDoubleTap")
+        print("didOneFingerDoubleTap - Waiting selection: \(waitingSelection)")
         
-        guard let transform = arView.raycast(
-            from: sender.location(in: self.arView),
-            allowing: .estimatedPlane, alignment: .any
-        ).first?.worldTransform else { return }
-            
-        let anchor = arManager.getNearestAnchor(transform: transform)
+        guard waitingSelection else { return }
+        
+        let anchor = arManager.getAnchorAt(point: sender.location(in: self.arView))
         if let anchor, !selection.contains(where: { $0.identifier == anchor.identifier }) {
-            selection.append(anchor)
-            NotificationCenter.default.post(name: objectSelectedNotification, object: nil, userInfo: nil)
+            print("Tapped on anchor with name \(anchor.name)")
+            select(anchor: anchor)
         }
     }
     
     @objc
     private func didOneFingerLongTap(sender: UILongPressGestureRecognizer) {
-        print("didOneFingerLongTap: state \(String(sender.state.rawValue))")
+        print("didOneFingerLongTap - State: \(String(sender.state.rawValue))")
         
         guard let objectToSpawn, sender.state == .began else { return }
         guard let tappedPoint = arView.raycast(
@@ -180,7 +177,7 @@ class ARViewController: UIViewController {
     @objc
     private func didTwoFingerSwipeRight(sender: UISwipeGestureRecognizer) {
         print("didTwoFingerSwipeRight: AR frame acquisition")
-        	
+        
         arManager.currentARFrame { frame in
             guard let frame else { return }
             self.getImageDescription(text: LLMGeneralPrompt.ar.getText(self.prompts), image: frame)
@@ -188,6 +185,7 @@ class ARViewController: UIViewController {
     }
     
     private func showQuestionsAlert() {
+        deselectAll()
         let alert = UIAlertController(title: "Choose question", message: "Please select a question to ask", preferredStyle: .actionSheet)
         
         for p in LLMQuestionPrompt.allCases {
@@ -225,7 +223,7 @@ class ARViewController: UIViewController {
                 self.getImageDescription(text: question, image: image)
             }
         }
-
+        
         alert.addAction(confirmAction)
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         
@@ -246,17 +244,20 @@ class ARViewController: UIViewController {
                 guard let frame else { return }
                 self.getImageDescription(text: prompt, image: frame)
             }
+            deselectAll()
         }
     }
     
     @objc
     private func handleColorQuestion(notification: NSNotification) {
         print("handleColorQuestion")
-        guard let obj = selection.first else { return }
-        selection.removeAll()
-        waitingSelection = false
-        NotificationCenter.default.removeObserver(self)
-        
+
+        guard selection.count == 1 else {
+            deselectAll()
+            return
+        }
+        deselectAll()
+      
         arManager.currentFrame { frame in
             guard let frame else { return }
             
@@ -377,20 +378,24 @@ class ARViewController: UIViewController {
         synthesizer.stopSpeaking(at: .word)
         synthesizer.speak(utterance)
     }
-}
+    
+    private func deselectAll() {
+        print("Deselecting all anchors")
+        NotificationCenter.default.removeObserver(self)
 
-extension UIImage {
-    public func saveToGallery() {
-        UIImageWriteToSavedPhotosAlbum(self, nil, nil, nil)
+        for anchor in selection {
+            arManager.deselect(anchor: anchor)
+        }
+        selection.removeAll()
+        
+        waitingSelection = false
     }
     
-    public func getBase64() -> String? {
-        let data = jpegData(compressionQuality: 0.5)
+    private func select(anchor: ARAnchor) {
+        print("Select anchor: \(anchor.name)")
         
-        if let data {
-            return "data:image/jpeg;base64,\(data.base64EncodedString())"
-        }
-        
-        return nil
+        arManager.select(anchor: anchor)
+        selection.append(anchor)
+        NotificationCenter.default.post(name: objectSelectedNotification, object: nil, userInfo: nil)
     }
 }

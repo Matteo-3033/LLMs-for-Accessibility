@@ -11,9 +11,7 @@ import SwiftUI
 
 struct ARSettings {
     var showPlanes: Bool = false
-    var showBorders: Bool = false
-    var borderWidth: Float = 10
-    var borderColor: Color = Color.green
+    var borderWidth: Float = 20
 }
 
 class ARManager: NSObject, ARSessionDelegate {
@@ -21,7 +19,7 @@ class ARManager: NSObject, ARSessionDelegate {
     private var arView: ARView
     private let arConfiguration: ARConfiguration
     
-    private var objs: [UUID: simd_float4x4] = [:]
+    private var objs: [UUID: TrackedObject] = [:]
     
     init(arView: ARView) {
         self.arView = arView
@@ -36,13 +34,13 @@ class ARManager: NSObject, ARSessionDelegate {
         
         arConfiguration = configuration
     }
-
+    
     public func startSession() {
         arView.session.delegate = self
         arView.environment.sceneUnderstanding.options.insert(
             [.collision, .occlusion, .physics, .receivesLighting]
         )
-       
+        
         arView.session.run(
             arConfiguration, options: [.resetTracking, .removeExistingAnchors]
         )
@@ -57,9 +55,19 @@ class ARManager: NSObject, ARSessionDelegate {
         let anchorEntity = AnchorEntity(world: arAnchor.transform)
         anchorEntity.addChild(model)
         
+        let indicatorView = IndicatorView()
+        indicatorView.backgroundColor = .clear
+        arView.addConstrained(subview: indicatorView)
+        
         arView.session.add(anchor: arAnchor)
         arView.scene.addAnchor(anchorEntity)
-        objs[arAnchor.identifier] = transform
+        
+        objs[arAnchor.identifier] = TrackedObject(
+            anchor: arAnchor,
+            entity: model,
+            anchorEntity: anchorEntity,
+            indicatorView: indicatorView
+        )
     }
     
     public func stopSession() {
@@ -68,20 +76,44 @@ class ARManager: NSObject, ARSessionDelegate {
         objs.removeAll()
     }
     
-    private func updateObjAnchor(anchor: ARObjectAnchor, camera: simd_float4x4) {
+    private func updateObjAnchor(anchor: ARObjectAnchor, camera: ARCamera) {
     }
     
     public func session(_ session: ARSession, didUpdate frame: ARFrame) {
         frame.anchors.forEach { anchor in
             if let objAnchor = anchor as? ARObjectAnchor {
-                updateObjAnchor(anchor: objAnchor, camera: frame.camera.transform)
+                updateObjAnchor(anchor: objAnchor, camera: frame.camera)
             }
             
             if let planeAnchor = anchor as? ARPlaneAnchor {
                 updatePlaneEntity(with: planeAnchor, in: arView, isEnabled: settings.showPlanes)
             }
+            
+            guard let obj = objs[anchor.identifier] else { return }
+                        
+            let projection = arView.project(anchor.transform.position)!
+            obj.onScreen = arView.bounds.contains(projection)
+            
+            let boundingBoxMax = obj.entity.visualBounds(relativeTo: nil).max
+            let boundingBoxMin = obj.entity.visualBounds(relativeTo: nil).min
+            let boundingBoxMaxProjection = arView.project(boundingBoxMax)
+            let boundingBoxMinProjection = arView.project(boundingBoxMin)
+            let projectedDistanceBoundingBoxExtremes = boundingBoxMinProjection?.distanceFrom(boundingBoxMaxProjection!)
+            let sizeOfObjectOnScreen = projectedDistanceBoundingBoxExtremes ?? 0
+            
+            if obj.onScreen {
+                let centerX = projection.x
+                let centerY = projection.y
+                obj.indicatorView.layer.opacity = 1
+                obj.indicatorView.xTopLeft = centerX - (sizeOfObjectOnScreen / 2)
+                obj.indicatorView.yTopLeft = centerY - (sizeOfObjectOnScreen / 2)
+                obj.indicatorView.height = sizeOfObjectOnScreen
+                obj.indicatorView.width = sizeOfObjectOnScreen
+                obj.indicatorView.lineWidth = CGFloat(settings.borderWidth)
+            }
+            
+            obj.indicatorView.layer.opacity = obj.onScreen && obj.selected ? 1 : 0
         }
-        
         
         let width = UIScreen.main.bounds.size.width
         
@@ -100,7 +132,7 @@ class ARManager: NSObject, ARSessionDelegate {
     public func session(_ session: ARSession, didAdd anchors: [ARAnchor]) {
         anchors.forEach { anchor in
             if let planeAnchor = anchor as? ARPlaneAnchor {
-                addPlaneEntity(with: planeAnchor, to: arView)
+                let (entity, anchorEntity) = addPlaneEntity(with: planeAnchor, to: arView)
             }
         }
     }
@@ -138,61 +170,23 @@ class ARManager: NSObject, ARSessionDelegate {
         }
     }
     
-    public func getNearestAnchor(transform: simd_float4x4) -> ARAnchor? {
-        let position = transform.position
+    public func getAnchorAt(point: CGPoint, maxDistance: Float = 0.5) -> ARAnchor? {
+        return objs.values.first {
+            $0.onScreen && !$0.selected && $0.isTappedAt(point: point)
+        }?.anchor
+    }
+    
+    public func select(anchor: ARAnchor) {
+        guard let obj = objs[anchor.identifier]
+        else { return }
         
-        return arView.session.currentFrame?.anchors.min {
-            position.distance(to: $0.transform.position) < position.distance(to: $1.transform.position)
-        }
+        obj.selected = true
     }
-}
-
-extension CVPixelBuffer {
-    public func toUIImage() -> UIImage {
-        let ciImageDepth = CIImage(cvPixelBuffer: self)
-        let contextDepth = CIContext.init(options: nil)
-        let cgImageDepth = contextDepth.createCGImage(ciImageDepth, from: ciImageDepth.extent)!
-        return UIImage(cgImage: cgImageDepth, scale: 1, orientation: UIImage.Orientation.right)
-    }
-}
-
-extension UIImage {
-    public func resizedTo(size newSize: CGSize) -> UIImage {
-        let availableRect = AVFoundation.AVMakeRect(
-            aspectRatio: self.size,
-            insideRect: .init(origin: .zero, size: newSize)
-        )
-        let targetSize = availableRect.size
-
-        // Set scale of renderer so that 1pt == 1px
-        let format = UIGraphicsImageRendererFormat()
-        format.scale = 1
-        let renderer = UIGraphicsImageRenderer(size: targetSize, format: format)
-
-        let resized = renderer.image { _ in
-            self.draw(in: CGRect(origin: .zero, size: targetSize))
-        }
-
-        return resized
-    }
-}
-
-extension simd_float4x4 {
-    public var position: simd_float3 {
-        return SIMD3<Float>(
-            columns.3.x,
-            columns.3.y,
-            columns.3.z
-        )
-    }
-}
-
-extension simd_float3 {
-    public func distance(to: simd_float3) -> Float {
-        return sqrt(
-            (x - to.x) * (x - to.x) +
-            (y - to.y) * (y - to.y) +
-            (z - to.z) * (z - to.z)
-        )
+    
+    public func deselect(anchor: ARAnchor) {
+        guard let obj = objs[anchor.identifier]
+        else { return }
+        
+        obj.selected = false
     }
 }
