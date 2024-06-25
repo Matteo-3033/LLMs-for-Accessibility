@@ -15,6 +15,7 @@ class TrackedObject {
     let anchorEntity: AnchorEntity
     
     let indicatorView: IndicatorView
+    var boundingBox: Entity?
     
     var onScreen = true
     var selected = false
@@ -27,6 +28,7 @@ class TrackedObject {
         self.indicatorView = indicatorView
         self.onScreen = onScreen
         self.selected = selected
+        self.boundingBox = nil
     }
     
     func equal(_ otherTrackedObject: TrackedObject?) -> Bool {

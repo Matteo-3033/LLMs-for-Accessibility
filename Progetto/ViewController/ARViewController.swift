@@ -44,6 +44,7 @@ class ARViewController: UIViewController {
         case foreground = "foreground"
         case obstacles = "obstacles"
         case color = "color"
+        case relationship = "relationship"
         
         public func getPrompt(_ prompts: [String: Any]) -> (String, String) {
             let array = prompts[rawValue] as! [String]
@@ -233,6 +234,7 @@ class ARViewController: UIViewController {
     private func handleQuestion(question: LLMQuestionPrompt, prompt: String) {
         let method: Selector? = switch question {
         case .color: #selector(handleColorQuestion(notification:))
+        case .relationship: #selector(handleRelationshipQuestion(notification:))
         default: nil
         }
         
@@ -256,13 +258,33 @@ class ARViewController: UIViewController {
             deselectAll()
             return
         }
-        deselectAll()
       
         arManager.currentFrame { frame in
             guard let frame else { return }
             
             let prompt = LLMQuestionPrompt.color.getPrompt(self.prompts).1
             self.getImageDescription(text: prompt, image: frame)
+            self.deselectAll()
+        }
+    }
+    
+    @objc
+    private func handleRelationshipQuestion(notification: NSNotification) {
+        print("handleRelationshipQuestion")
+
+        guard selection.count == 2 else {
+            if selection.count > 2 {
+                deselectAll()
+            }
+            return
+        }
+      
+        arManager.currentFrame { frame in
+            guard let frame else { return }
+            
+            let prompt = LLMQuestionPrompt.relationship.getPrompt(self.prompts).1
+            self.getImageDescription(text: prompt, image: frame)
+            self.deselectAll()
         }
     }
     
@@ -327,7 +349,7 @@ class ARViewController: UIViewController {
         })
         settingsMenu.modalPresentationStyle = .pageSheet
         settingsMenu.isModalInPresentation = false
-        settingsMenu.sheetPresentationController?.detents = [.large()]
+        settingsMenu.sheetPresentationController?.detents = [.medium()]
         present(settingsMenu, animated: true)
     }
     

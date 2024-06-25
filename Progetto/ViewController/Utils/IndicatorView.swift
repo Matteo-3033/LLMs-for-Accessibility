@@ -40,7 +40,7 @@ class IndicatorView: UIView {
         }
     }
     
-    var lineWidth: CGFloat = 0 {
+    var lineWidth: CGFloat = 20 {
         didSet {
             setNeedsDisplay()
         }

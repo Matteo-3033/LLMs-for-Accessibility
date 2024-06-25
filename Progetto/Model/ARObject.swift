@@ -20,7 +20,7 @@ struct ARObject: Identifiable {
     static var models: [ARObject]?
     
     public func load() -> Entity? {
-        return try? Entity.load(named: modelName)
+        return try? Entity.loadModel(named: modelName)
     }
     
     static func getObjects() -> [ARObject] {

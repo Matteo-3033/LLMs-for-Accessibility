@@ -21,35 +21,6 @@ struct SettingsMenu : View {
                 Section {
                     Toggle("Show Planes", isOn: $settings.showPlanes)
                 }
-                
-                Section("Border Width") {
-                    Slider(
-                        value: $settings.borderWidth,
-                        in: 15...35,
-                        step: 1
-                    ) {
-                        Text("Width")
-                    }
-                }
-                                
-                Section("Preview") {
-                    ZStack(alignment: .topLeading) {
-                        Rectangle()
-                            .fill(.clear)
-                            .frame(width: 60, height: 85)
-                            .border(selectionColor, width: CGFloat(settings.borderWidth))
-                            .padding(.top, 70)
-                            .padding(.leading, 25)
-                        Rectangle()
-                            .fill(.clear)
-                            .frame(width: 65, height: 110)
-                            .border(selectionColor, width: CGFloat(settings.borderWidth))
-                            .padding(.top, 85)
-                            .padding(.leading, 220)
-                    }
-                    .frame(width: 300, height: 240, alignment: .topLeading)
-                    .background(Image("livingroom").resizable())
-                }
             }
             
             Button(action: { onSettingsSaved(settings) }) {

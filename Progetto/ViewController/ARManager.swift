@@ -8,10 +8,10 @@
 import ARKit
 import RealityKit
 import SwiftUI
+import Metal
 
 struct ARSettings {
     var showPlanes: Bool = false
-    var borderWidth: Float = 20
 }
 
 class ARManager: NSObject, ARSessionDelegate {
@@ -48,7 +48,6 @@ class ARManager: NSObject, ARSessionDelegate {
     
     public func addObjectToScene(obj: ARObject, transform: simd_float4x4) {
         guard let model = obj.load() else { return }
-        
         print("addObjectToScene \(obj.modelName)")
         
         let arAnchor = ARObjectAnchor(obj: obj, transform: transform)
@@ -57,6 +56,7 @@ class ARManager: NSObject, ARSessionDelegate {
         
         let indicatorView = IndicatorView()
         indicatorView.backgroundColor = .clear
+        indicatorView.layer.opacity = 0
         arView.addConstrained(subview: indicatorView)
         
         arView.session.add(anchor: arAnchor)
@@ -94,25 +94,20 @@ class ARManager: NSObject, ARSessionDelegate {
             let projection = arView.project(anchor.transform.position)!
             obj.onScreen = arView.bounds.contains(projection)
             
-            let boundingBoxMax = obj.entity.visualBounds(relativeTo: nil).max
-            let boundingBoxMin = obj.entity.visualBounds(relativeTo: nil).min
-            let boundingBoxMaxProjection = arView.project(boundingBoxMax)
-            let boundingBoxMinProjection = arView.project(boundingBoxMin)
+            let boundingBox = obj.entity.visualBounds(relativeTo: nil)
+            let boundingBoxMaxProjection = arView.project(boundingBox.max)
+            let boundingBoxMinProjection = arView.project(boundingBox.min)
             let projectedDistanceBoundingBoxExtremes = boundingBoxMinProjection?.distanceFrom(boundingBoxMaxProjection!)
             let sizeOfObjectOnScreen = projectedDistanceBoundingBoxExtremes ?? 0
             
             if obj.onScreen {
                 let centerX = projection.x
                 let centerY = projection.y
-                obj.indicatorView.layer.opacity = 1
                 obj.indicatorView.xTopLeft = centerX - (sizeOfObjectOnScreen / 2)
                 obj.indicatorView.yTopLeft = centerY - (sizeOfObjectOnScreen / 2)
                 obj.indicatorView.height = sizeOfObjectOnScreen
                 obj.indicatorView.width = sizeOfObjectOnScreen
-                obj.indicatorView.lineWidth = CGFloat(settings.borderWidth)
             }
-            
-            obj.indicatorView.layer.opacity = obj.onScreen && obj.selected ? 1 : 0
         }
         
         let width = UIScreen.main.bounds.size.width
@@ -177,16 +172,30 @@ class ARManager: NSObject, ARSessionDelegate {
     }
     
     public func select(anchor: ARAnchor) {
-        guard let obj = objs[anchor.identifier]
+        guard let obj = objs[anchor.identifier], !obj.selected
         else { return }
         
+        let boundingBox = obj.entity.visualBounds(relativeTo: nil)
+        let size = boundingBox.max - boundingBox.min
+        
+        let boxMesh = MeshResource.generateBox(size: size, cornerRadius: 0.1)
+        let boxMaterial = SimpleMaterial(color: UIColor.init(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.4), isMetallic: true)
+        let boundingBoxEntity = ModelEntity(mesh: boxMesh, materials: [boxMaterial])
+        
+        obj.anchorEntity.addChild(boundingBoxEntity)
+        boundingBoxEntity.transform.translation.y = size.y / 2
+        
         obj.selected = true
+        obj.boundingBox = boundingBoxEntity
     }
     
     public func deselect(anchor: ARAnchor) {
-        guard let obj = objs[anchor.identifier]
+        guard let obj = objs[anchor.identifier], obj.selected, let box = obj.boundingBox
         else { return }
         
         obj.selected = false
+        
+        obj.anchorEntity.removeChild(box)
+        obj.boundingBox = nil
     }
 }
