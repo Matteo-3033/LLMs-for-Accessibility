@@ -31,7 +31,7 @@
 	<key>relationship</key>
 	<array>
 		<string>Where&apos;s this object relative to another?</string>
-		<string>This is a picture of the environment around me. I cannot see it. There are two objects framed by two white boxes. How&apos;s the first positioned relative to the other? Answer with the description only, in an alt text style. If you cannot find one or both objects answer with &quot;The objects you selected are not visible on screen&quot;</string>
+		<string>This is a picture of the environment around me. I cannot see it. There are two objects framed by two white boxes. How&apos;s the first positioned relative to the other? Answer with the description only, in an alt text style. Do not mention the white frame. If you cannot find one or both objects answer with &quot;The objects you selected are not visible on screen&quot;</string>
 	</array>
 </dict>
 </plist>
