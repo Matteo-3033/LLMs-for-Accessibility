@@ -196,7 +196,7 @@ class ARManager: NSObject, ARSessionDelegate {
         let size = boundingBox.max - boundingBox.min
         
         let boxMesh = MeshResource.generateBox(size: size, cornerRadius: 0.05)
-        let boxMaterial = SimpleMaterial(color: UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.3), isMetallic: false)
+        let boxMaterial = SimpleMaterial(color: UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.05), isMetallic: false)
         let boundingBoxEntity = ModelEntity(mesh: boxMesh, materials: [boxMaterial])
         
         obj.anchorEntity.addChild(boundingBoxEntity)

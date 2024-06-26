@@ -26,21 +26,21 @@
 	<key>color</key>
 	<array>
 		<string>What color is this object?</string>
-		<string>This is a picture of the environment around me. I cannot see it. What&apos;s the color of the object framed by a white transparent box? Answer with the color only or, if it is multicolored, with a brief description focused on its colors. If you cannot find the object framed by a white transparent box answer with &quot;The selected object is not visible on screen&quot;</string>
-        <string>This is a picture of the environment around me. I cannot see it. What&apos;s the color of the object marked with a red cross? Answer with the color only or, if it is multicolored, with a brief description focused on its colors. If you cannot find the object marked with a red cross answer with &quot;The selected object is not visible on screen&quot;</string>
+		<string>This is a picture of the environment around me. I cannot see it. What&apos;s the color of the object framed by a white transparent box? Answer with the color only or, if it is multicolored, with a brief description focused on its colors. Keep in mind that the white transparent box may alter the original color of the object; tell me its original color. Do not mention the white transparent box.</string>
+        <string>This is a picture of the environment around me. I cannot see it. What&apos;s the color of the object marked with a red cross? Ignore the red cross. Answer with the color only or, if it is multicolored, with a brief description focused on its colors.</string>
 	</array>
 	<key>relationship</key>
 	<array>
 		<string>Where&apos;s this object relative to another?</string>
-        <string>This is a picture of the environment around me. I cannot see it. There are two objects framed by two white boxes. How&apos;s the first positioned relative to the other? Answer with the description only, in an alt text style; briefly describe the two objects. Do not mention the two white boxes. If you cannot find one or both objects answer with &quot;The selected objects are not visible on screen&quot;</string>
-        <string>This is a picture of the environment around me. I cannot see it. There are two objects that are marked with a red cross. How&apos;s the first object positioned relative to the other? Answer with the description only, in an alt text style; briefly describe the two objects. Do not mention the two red crosses. If you cannot find one or both objects answer with &quot;The selected objects are not visible on screen&quot;</string>
-        <string>This is a picture of the environment around me. I cannot see it. There are two objects: one is framed by a white box, while the other is marked with a red cross. How&apos;s the first object positioned relative to the other? Answer with the description only, in an alt text style; briefly describe the two objects. Do not mention the white box and the red cross. If you cannot find one or both objects answer with &quot;The selected objects are not visible on screen&quot;</string>
+        <string>This is a picture of the environment around me. I cannot see it. There are two objects framed by two white boxes. How&apos;s the first positioned relative to the other? Answer with the description only, in an alt text style; briefly describe the two objects. Do not mention the two white boxes.</string>
+        <string>This is a picture of the environment around me. I cannot see it. There are two objects that are marked with a red cross. How&apos;s the first object positioned relative to the other? Answer with the description only, in an alt text style; briefly describe the two objects. Do not mention the two red crosses.</string>
+        <string>This is a picture of the environment around me. I cannot see it. There are two objects: one is framed by a white box, while the other is marked with a red cross. How&apos;s the first object positioned relative to the other? Answer with the description only, in an alt text style; briefly describe the two objects. Do not mention the white box and the red cross.</string>
 	</array>
     <key>what</key>
     <array>
         <string>What&apos;s this object?</string>
-        <string>This is a picture of the environment around me. I cannot see it. What&apos;s the object framed by a white transparent box? Answer with only a description of the object in an alt text style. Do not mention the white box. If you cannot find the object framed by a white transparent box answer with &quot;The selected object is not visible on screen&quot;</string>
-        <string>This is a picture of the environment around me. I cannot see it. What&apos;s the object marked with a red cross? Answer with only a description of the object in an alt text style. Do not mention the red cross. If you cannot find the object framed by a red cross answer with &quot;The selected object is not visible on screen&quot;</string>
+        <string>This is a picture of the environment around me. I cannot see it. What&apos;s the object framed by a white transparent box? Answer with only a description of the object in an alt text style. Do not mention the white transparent box. Keep in mind that the white transparent box may alter the original color of the object</string>
+        <string>This is a picture of the environment around me. I cannot see it. What&apos;s the object marked with a red cross? Answer with only a description of the object in an alt text style. Do not mention the red cross.</string>
     </array>
 </dict>
 </plist>

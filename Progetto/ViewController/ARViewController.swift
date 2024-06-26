@@ -270,19 +270,19 @@ class ARViewController: UIViewController {
             return
         }
         
+        let prompts = LLMQuestionPrompt.color.getPrompt(self.prompts)
+        var prompt: String
+        if self.selection.allSatisfy({ $0 is SelectionMarker }) {
+            prompt = prompts[2]
+        } else {
+            prompt = prompts[1]
+        }
+        
         // Necessary for the marker to spawn
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.arManager.currentFrame { frame in
                 guard let frame else { return }
-                
-                let prompts = LLMQuestionPrompt.color.getPrompt(self.prompts)
-                var prompt: String
-                if self.selection.allSatisfy({ $0 is SelectionMarker }) {
-                    prompt = prompts[2]
-                } else {
-                    prompt = prompts[1]
-                }
-                
+         
                 self.getImageDescription(text: prompt, image: frame)
                 self.deselectAll()
             }
@@ -299,21 +299,21 @@ class ARViewController: UIViewController {
             }
             return
         }
+        
+        let prompts = LLMQuestionPrompt.relationship.getPrompt(self.prompts)
+        var prompt: String
+        if self.selection.allSatisfy({ $0 is SelectionMarker }) {
+            prompt = prompts[2]
+        } else if self.selection.allSatisfy({ $0 is SelectableTrackedObject }) {
+            prompt = prompts[1]
+        } else {
+            prompt = prompts[3]
+        }
       
         // Necessary for the marker to spawn
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.arManager.currentFrame { frame in
                 guard let frame else { return }
-                
-                let prompts = LLMQuestionPrompt.relationship.getPrompt(self.prompts)
-                var prompt: String
-                if self.selection.allSatisfy({ $0 is SelectionMarker }) {
-                    prompt = prompts[2]
-                } else if self.selection.allSatisfy({ $0 is SelectableTrackedObject }) {
-                    prompt = prompts[1]
-                } else {
-                    prompt = prompts[3]
-                }
                 
                 self.getImageDescription(text: prompt, image: frame)
                 self.deselectAll()
@@ -363,7 +363,7 @@ class ARViewController: UIViewController {
                 print("Error during request: \(error ?? "")")
                 return
             }
-            print("Description from LLM : \(text)")
+            print("Description from LLM: \(text)")
             self.speak(text: text)
             
             self.session.append((
