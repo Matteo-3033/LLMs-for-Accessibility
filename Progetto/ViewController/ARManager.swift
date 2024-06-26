@@ -187,13 +187,17 @@ class ARManager: NSObject, ARSessionDelegate {
         
         let boundingBox = obj.entity.visualBounds(relativeTo: nil)
         let size = boundingBox.max - boundingBox.min
+        print(boundingBox.max)
+        print(boundingBox.min)
+        print(size)
         
         let boxMesh = MeshResource.generateBox(size: size, cornerRadius: 0.1)
-        let boxMaterial = SimpleMaterial(color: UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.4), isMetallic: false)
+        let boxMaterial = SimpleMaterial(color: UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.3), isMetallic: false)
         let boundingBoxEntity = ModelEntity(mesh: boxMesh, materials: [boxMaterial])
         
         obj.anchorEntity.addChild(boundingBoxEntity)
         boundingBoxEntity.transform.translation.y = size.y / 2
+        boundingBoxEntity.transform.rotation = obj.anchorEntity.transform.rotation
         
         obj.selected = true
         obj.boundingBox = boundingBoxEntity
