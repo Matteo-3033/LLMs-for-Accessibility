@@ -200,8 +200,12 @@ class ARManager: NSObject, ARSessionDelegate {
         let boundingBoxEntity = ModelEntity(mesh: boxMesh, materials: [boxMaterial])
         
         obj.anchorEntity.addChild(boundingBoxEntity)
+        
         boundingBoxEntity.transform.translation.y = size.y / 2
-        boundingBoxEntity.transform.rotation = obj.anchorEntity.transform.rotation
+        if size.x < size.z {
+            let radians = 90.0 * Float.pi / 180.0
+            boundingBoxEntity.transform.rotation = simd_quatf(angle: radians, axis: SIMD3(x: 0, y: 1, z: 0))
+        }
         
         obj.selected = true
         obj.boundingBox = boundingBoxEntity
