@@ -24,7 +24,7 @@ class ARViewController: UIViewController {
     private var session: [(String, String, String)] = []
     
     private var waitingSelection = false
-    private var selection: [ARAnchor] = []
+    private var selection: [TrackedObject] = []
     private let objectSelectedNotification = NSNotification.Name(
         rawValue: "objectSelected"
     )
@@ -46,9 +46,8 @@ class ARViewController: UIViewController {
         case color = "color"
         case relationship = "relationship"
         
-        public func getPrompt(_ prompts: [String: Any]) -> (String, String) {
-            let array = prompts[rawValue] as! [String]
-            return (array[0], array[1])
+        public func getPrompt(_ prompts: [String: Any]) -> [String] {
+            return prompts[rawValue] as! [String]
         }
     }
     
@@ -92,8 +91,8 @@ class ARViewController: UIViewController {
         )
         arView.addGestureRecognizer(oneFingerLongTapGestureRecognizer)
         
-        let twoFingerSwipeUpGestureRecognizer = UISwipeGestureRecognizer(target:
-                                                                            self, action: #selector(didTwoFingerSwipeUp(sender:))
+        let twoFingerSwipeUpGestureRecognizer = UISwipeGestureRecognizer(
+            target: self, action: #selector(didTwoFingerSwipeUp(sender:))
         )
         twoFingerSwipeUpGestureRecognizer.direction = .up
         twoFingerSwipeUpGestureRecognizer.numberOfTouchesRequired = 2
@@ -128,9 +127,17 @@ class ARViewController: UIViewController {
         guard waitingSelection else { return }
         
         let anchor = arManager.getAnchorAt(point: sender.location(in: self.arView))
+        
         if let anchor, !selection.contains(where: { $0.identifier == anchor.identifier }) {
             print("Tapped on anchor with name \(anchor.name)")
             select(anchor: anchor)
+        } else if let pointTapped = arView.raycast(
+            from: sender.location(in: self.arView),
+            allowing: .estimatedPlane,
+            alignment: .any
+        ).first {
+            print("Tapped on real world element")
+            select(transform: pointTapped.worldTransform)
         }
     }
     
@@ -190,7 +197,9 @@ class ARViewController: UIViewController {
         let alert = UIAlertController(title: "Choose question", message: "Please select a question to ask", preferredStyle: .actionSheet)
         
         for p in LLMQuestionPrompt.allCases {
-            let (question, prompt) = p.getPrompt(prompts)
+            let entry = p.getPrompt(prompts)
+            let question = entry[0]
+            let prompt = entry[1]
             
             alert.addAction(UIAlertAction(title: question, style: .default) { action in
                 alert.dismiss(animated: true)
@@ -258,13 +267,23 @@ class ARViewController: UIViewController {
             deselectAll()
             return
         }
-      
-        arManager.currentFrame { frame in
-            guard let frame else { return }
-            
-            let prompt = LLMQuestionPrompt.color.getPrompt(self.prompts).1
-            self.getImageDescription(text: prompt, image: frame)
-            self.deselectAll()
+        
+        // Necessary for the marker to spawn
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.arManager.currentFrame { frame in
+                guard let frame else { return }
+                
+                let prompts = LLMQuestionPrompt.color.getPrompt(self.prompts)
+                var prompt: String
+                if self.selection.allSatisfy({ $0 is SelectionMarker }) {
+                    prompt = prompts[2]
+                } else {
+                    prompt = prompts[1]
+                }
+                
+                self.getImageDescription(text: prompt, image: frame)
+                self.deselectAll()
+            }
         }
     }
     
@@ -279,12 +298,24 @@ class ARViewController: UIViewController {
             return
         }
       
-        arManager.currentFrame { frame in
-            guard let frame else { return }
-            
-            let prompt = LLMQuestionPrompt.relationship.getPrompt(self.prompts).1
-            self.getImageDescription(text: prompt, image: frame)
-            self.deselectAll()
+        // Necessary for the marker to spawn
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.arManager.currentFrame { frame in
+                guard let frame else { return }
+                
+                let prompts = LLMQuestionPrompt.relationship.getPrompt(self.prompts)
+                var prompt: String
+                if self.selection.allSatisfy({ $0 is SelectionMarker }) {
+                    prompt = prompts[2]
+                } else if self.selection.allSatisfy({ $0 is SelectableTrackedObject }) {
+                    prompt = prompts[1]
+                } else {
+                    prompt = prompts[3]
+                }
+                
+                self.getImageDescription(text: prompt, image: frame)
+                self.deselectAll()
+            }
         }
     }
     
@@ -402,11 +433,11 @@ class ARViewController: UIViewController {
     }
     
     private func deselectAll() {
-        print("Deselecting all anchors")
+        print("Deselecting all objects")
         NotificationCenter.default.removeObserver(self)
 
-        for anchor in selection {
-            arManager.deselect(anchor: anchor)
+        for obj in selection {
+            arManager.deselect(obj: obj)
         }
         selection.removeAll()
         
@@ -416,8 +447,20 @@ class ARViewController: UIViewController {
     private func select(anchor: ARAnchor) {
         print("Select anchor: \(anchor.name)")
         
-        arManager.select(anchor: anchor)
-        selection.append(anchor)
+        guard let obj = arManager.select(anchor: anchor)
+        else { return }
+        
+        selection.append(obj)
+        NotificationCenter.default.post(name: objectSelectedNotification, object: nil, userInfo: nil)
+    }
+    
+    private func select(transform: simd_float4x4) {
+        print("Select transform: \(transform)")
+        
+        guard let obj = arManager.select(transform: transform)
+        else { return }
+        
+        selection.append(obj)
         NotificationCenter.default.post(name: objectSelectedNotification, object: nil, userInfo: nil)
     }
 }

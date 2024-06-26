@@ -9,26 +9,21 @@ import ARKit
 import RealityKit
 
 class TrackedObject {
-    let identifier: UUID
     let anchor: ARAnchor
     let entity: Entity
     let anchorEntity: AnchorEntity
     
-    let indicatorView: IndicatorView
-    var boundingBox: Entity?
-    
     var onScreen = true
-    var selected = false
     
-    init(anchor: ARAnchor, entity: Entity, anchorEntity: AnchorEntity, indicatorView: IndicatorView, onScreen: Bool = true, selected: Bool = false) {
-        self.identifier = anchor.identifier
+    var identifier: UUID {
+        anchor.identifier
+    }
+    
+    init(anchor: ARAnchor, entity: Entity, anchorEntity: AnchorEntity, onScreen: Bool = true) {
         self.anchor = anchor
         self.entity = entity
         self.anchorEntity = anchorEntity
-        self.indicatorView = indicatorView
         self.onScreen = onScreen
-        self.selected = selected
-        self.boundingBox = nil
     }
     
     func equal(_ otherTrackedObject: TrackedObject?) -> Bool {
@@ -36,9 +31,5 @@ class TrackedObject {
             return identifier == otherTrackedObject.identifier
         }
         return false
-    }
-    
-    func isTappedAt(point: CGPoint) -> Bool {
-        return indicatorView.contains(point: point)
     }
 }

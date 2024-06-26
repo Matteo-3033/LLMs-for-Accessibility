@@ -62,7 +62,7 @@ class ARManager: NSObject, ARSessionDelegate {
         arView.session.add(anchor: arAnchor)
         arView.scene.addAnchor(anchorEntity)
         
-        objs[arAnchor.identifier] = TrackedObject(
+        objs[arAnchor.identifier] = SelectableTrackedObject(
             anchor: arAnchor,
             entity: model,
             anchorEntity: anchorEntity,
@@ -90,7 +90,7 @@ class ARManager: NSObject, ARSessionDelegate {
             }
             
             guard let obj = objs[anchor.identifier] else { return }
-                        
+            
             let projection = arView.project(anchor.transform.position)!
             obj.onScreen = arView.bounds.contains(projection)
             
@@ -100,13 +100,17 @@ class ARManager: NSObject, ARSessionDelegate {
             let projectedDistanceBoundingBoxExtremes = boundingBoxMinProjection?.distanceFrom(boundingBoxMaxProjection!)
             let sizeOfObjectOnScreen = projectedDistanceBoundingBoxExtremes ?? 0
             
-            if obj.onScreen {
-                let centerX = projection.x
-                let centerY = projection.y
-                obj.indicatorView.xTopLeft = centerX - (sizeOfObjectOnScreen / 2)
-                obj.indicatorView.yTopLeft = centerY - (sizeOfObjectOnScreen / 2)
-                obj.indicatorView.height = sizeOfObjectOnScreen
-                obj.indicatorView.width = sizeOfObjectOnScreen
+            if obj.onScreen, let obj = obj as? SelectableTrackedObject {
+                if obj.onScreen {
+                    let centerX = projection.x
+                    let centerY = projection.y
+                    obj.indicatorView.xTopLeft = centerX - (sizeOfObjectOnScreen / 2)
+                    obj.indicatorView.yTopLeft = centerY - (sizeOfObjectOnScreen / 2)
+                    obj.indicatorView.height = sizeOfObjectOnScreen
+                    obj.indicatorView.width = sizeOfObjectOnScreen
+                }
+            } else if let obj = obj as? SelectionMarker {
+                obj.anchorEntity.look(at: frame.camera.transform.position, from: anchor.transform.position, relativeTo: nil)
             }
         }
         
@@ -165,21 +169,27 @@ class ARManager: NSObject, ARSessionDelegate {
         }
     }
     
-    public func getAnchorAt(point: CGPoint, maxDistance: Float = 0.5) -> ARAnchor? {
-        return objs.values.first {
+    public func getAnchorAt(point: CGPoint) -> ARAnchor? {
+        return objs.values.filter {
+            $0 is SelectableTrackedObject
+        }.map {
+            $0 as! SelectableTrackedObject
+        }.first {
             $0.onScreen && !$0.selected && $0.isTappedAt(point: point)
         }?.anchor
     }
     
-    public func select(anchor: ARAnchor) {
-        guard let obj = objs[anchor.identifier], !obj.selected
-        else { return }
+    public func select(anchor: ARAnchor) -> TrackedObject? {
+        guard 
+            let obj = objs[anchor.identifier] as? SelectableTrackedObject,
+            !obj.selected
+        else { return nil }
         
         let boundingBox = obj.entity.visualBounds(relativeTo: nil)
         let size = boundingBox.max - boundingBox.min
         
         let boxMesh = MeshResource.generateBox(size: size, cornerRadius: 0.1)
-        let boxMaterial = SimpleMaterial(color: UIColor.init(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.4), isMetallic: false)
+        let boxMaterial = SimpleMaterial(color: UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.4), isMetallic: false)
         let boundingBoxEntity = ModelEntity(mesh: boxMesh, materials: [boxMaterial])
         
         obj.anchorEntity.addChild(boundingBoxEntity)
@@ -187,15 +197,41 @@ class ARManager: NSObject, ARSessionDelegate {
         
         obj.selected = true
         obj.boundingBox = boundingBoxEntity
+        
+        return obj
     }
     
-    public func deselect(anchor: ARAnchor) {
-        guard let obj = objs[anchor.identifier], obj.selected, let box = obj.boundingBox
+    public func select(transform: simd_float4x4) -> TrackedObject? {
+        let arAnchor = ARAnchor(transform: transform)
+        let anchorEntity = AnchorEntity(world: arAnchor.transform)
+        
+        let obj = SelectionMarker(
+            anchor: arAnchor,
+            anchorEntity: anchorEntity,
+            onScreen: true,
+            cameraPosition: arView.cameraTransform.translation
+        )
+        objs[arAnchor.identifier] = obj
+        
+        arView.session.add(anchor: arAnchor)
+        arView.scene.addAnchor(anchorEntity)
+        
+        return obj
+    }
+    
+    public func deselect(obj: TrackedObject) {
+        guard let obj = objs[obj.identifier]
         else { return }
         
-        obj.selected = false
-        
-        obj.anchorEntity.removeChild(box)
-        obj.boundingBox = nil
+        if let obj = obj as? SelectableTrackedObject {
+            guard obj.selected, let box = obj.boundingBox else { return }
+            
+            obj.selected = false
+            obj.anchorEntity.removeChild(box)
+            obj.boundingBox = nil
+        } else {
+            arView.scene.removeAnchor(obj.anchorEntity)
+            arView.session.remove(anchor: obj.anchor)
+        }
     }
 }

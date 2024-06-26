@@ -30,7 +30,7 @@ struct ARObject: Identifiable {
             
             if let path, let files = try? filemanager.contentsOfDirectory(atPath: path) {
                 models = files
-                    .filter { $0.lowercased().hasSuffix(".usdz") }
+                    .filter { $0.lowercased().hasSuffix(".usdz") && $0 != "marker.usdz" }
                     .map { ARObject(
                         modelName: $0.replacingOccurrences(of: ".usdz", with: "")
                     ) }

@@ -13,6 +13,7 @@
 		952E5C062C1C304400F30043 /* CommunicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952E5C052C1C304400F30043 /* CommunicationController.swift */; };
 		9578CEF22C2BF5E3009BC720 /* Food.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 9578CEF12C2BF5E3009BC720 /* Food.usdz */; };
 		9578CF022C2BF7FD009BC720 /* Desk.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 9578CF002C2BF7FD009BC720 /* Desk.usdz */; };
+		9578CF042C2BFDFF009BC720 /* marker.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 9578CF032C2BFDFF009BC720 /* marker.usdz */; };
 		95BBAB452C2AE92900CC960F /* SelectableTrackedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BBAB442C2AE92900CC960F /* SelectableTrackedObject.swift */; };
 		95BBAB472C2AF1D000CC960F /* SelectionMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BBAB462C2AF1D000CC960F /* SelectionMarker.swift */; };
 		95BDC7252C240A760059A658 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BDC7192C240A760059A658 /* Extensions.swift */; };
@@ -38,6 +39,7 @@
 		952E5C052C1C304400F30043 /* CommunicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationController.swift; sourceTree = "<group>"; };
 		9578CEF12C2BF5E3009BC720 /* Food.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = Food.usdz; sourceTree = "<group>"; };
 		9578CF002C2BF7FD009BC720 /* Desk.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = Desk.usdz; sourceTree = "<group>"; };
+		9578CF032C2BFDFF009BC720 /* marker.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = marker.usdz; sourceTree = "<group>"; };
 		95BBAB442C2AE92900CC960F /* SelectableTrackedObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableTrackedObject.swift; sourceTree = "<group>"; };
 		95BBAB462C2AF1D000CC960F /* SelectionMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionMarker.swift; sourceTree = "<group>"; };
 		95BDC7192C240A760059A658 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				951F35762C2998070061DB17 /* Chair.usdz */,
+				9578CF032C2BFDFF009BC720 /* marker.usdz */,
 				9578CEF12C2BF5E3009BC720 /* Food.usdz */,
 				9578CF002C2BF7FD009BC720 /* Desk.usdz */,
 				951F35772C2998070061DB17 /* TV.usdz */,
@@ -225,6 +228,7 @@
 			files = (
 				951F35792C2998070061DB17 /* TV.usdz in Resources */,
 				9578CEF22C2BF5E3009BC720 /* Food.usdz in Resources */,
+				9578CF042C2BFDFF009BC720 /* marker.usdz in Resources */,
 				AF5DC4D72C17121800549312 /* Preview Assets.xcassets in Resources */,
 				AF5DC4D42C17121800549312 /* Assets.xcassets in Resources */,
 				95E16BCD2C201469002BDF6C /* prompts.plist in Resources */,
