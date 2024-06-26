@@ -45,6 +45,7 @@ class ARViewController: UIViewController {
         case obstacles = "obstacles"
         case color = "color"
         case relationship = "relationship"
+        case what = "what"
         
         public func getPrompt(_ prompts: [String: Any]) -> [String] {
             return prompts[rawValue] as! [String]
@@ -244,6 +245,7 @@ class ARViewController: UIViewController {
         let method: Selector? = switch question {
         case .color: #selector(handleColorQuestion(notification:))
         case .relationship: #selector(handleRelationshipQuestion(notification:))
+        case .what: #selector(handleWhatQuestion(notification:))
         default: nil
         }
         
@@ -311,6 +313,34 @@ class ARViewController: UIViewController {
                     prompt = prompts[1]
                 } else {
                     prompt = prompts[3]
+                }
+                
+                self.getImageDescription(text: prompt, image: frame)
+                self.deselectAll()
+            }
+        }
+    }
+    
+    @objc
+    private func handleWhatQuestion(notification: NSNotification) {
+        print("handleWhatQuestion")
+
+        guard selection.count == 1 else {
+            deselectAll()
+            return
+        }
+        
+        // Necessary for the marker to spawn
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.arManager.currentFrame { frame in
+                guard let frame else { return }
+                
+                let prompts = LLMQuestionPrompt.what.getPrompt(self.prompts)
+                var prompt: String
+                if self.selection.allSatisfy({ $0 is SelectionMarker }) {
+                    prompt = prompts[2]
+                } else {
+                    prompt = prompts[1]
                 }
                 
                 self.getImageDescription(text: prompt, image: frame)
