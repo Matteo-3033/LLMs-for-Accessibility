@@ -8,9 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		951F35702C296D450061DB17 /* TrackedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951F356F2C296D450061DB17 /* TrackedObject.swift */; };
-		951F35782C2998070061DB17 /* chair_swan.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 951F35762C2998070061DB17 /* chair_swan.usdz */; };
-		951F35792C2998070061DB17 /* tv_retro.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 951F35772C2998070061DB17 /* tv_retro.usdz */; };
+		951F35782C2998070061DB17 /* Chair.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 951F35762C2998070061DB17 /* Chair.usdz */; };
+		951F35792C2998070061DB17 /* TV.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 951F35772C2998070061DB17 /* TV.usdz */; };
 		952E5C062C1C304400F30043 /* CommunicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952E5C052C1C304400F30043 /* CommunicationController.swift */; };
+		9578CEF22C2BF5E3009BC720 /* Food.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 9578CEF12C2BF5E3009BC720 /* Food.usdz */; };
+		9578CF022C2BF7FD009BC720 /* Desk.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 9578CF002C2BF7FD009BC720 /* Desk.usdz */; };
+		95BBAB452C2AE92900CC960F /* SelectableTrackedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BBAB442C2AE92900CC960F /* SelectableTrackedObject.swift */; };
+		95BBAB472C2AF1D000CC960F /* SelectionMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BBAB462C2AF1D000CC960F /* SelectionMarker.swift */; };
 		95BDC7252C240A760059A658 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BDC7192C240A760059A658 /* Extensions.swift */; };
 		95BDC7262C240A760059A658 /* IndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BDC71A2C240A760059A658 /* IndicatorView.swift */; };
 		95BDC7292C240A760059A658 /* Planes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BDC71D2C240A760059A658 /* Planes.swift */; };
@@ -29,9 +33,13 @@
 
 /* Begin PBXFileReference section */
 		951F356F2C296D450061DB17 /* TrackedObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackedObject.swift; sourceTree = "<group>"; };
-		951F35762C2998070061DB17 /* chair_swan.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = chair_swan.usdz; sourceTree = "<group>"; };
-		951F35772C2998070061DB17 /* tv_retro.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = tv_retro.usdz; sourceTree = "<group>"; };
+		951F35762C2998070061DB17 /* Chair.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = Chair.usdz; sourceTree = "<group>"; };
+		951F35772C2998070061DB17 /* TV.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = TV.usdz; sourceTree = "<group>"; };
 		952E5C052C1C304400F30043 /* CommunicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationController.swift; sourceTree = "<group>"; };
+		9578CEF12C2BF5E3009BC720 /* Food.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = Food.usdz; sourceTree = "<group>"; };
+		9578CF002C2BF7FD009BC720 /* Desk.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = Desk.usdz; sourceTree = "<group>"; };
+		95BBAB442C2AE92900CC960F /* SelectableTrackedObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableTrackedObject.swift; sourceTree = "<group>"; };
+		95BBAB462C2AF1D000CC960F /* SelectionMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionMarker.swift; sourceTree = "<group>"; };
 		95BDC7192C240A760059A658 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		95BDC71A2C240A760059A658 /* IndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndicatorView.swift; sourceTree = "<group>"; };
 		95BDC71D2C240A760059A658 /* Planes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Planes.swift; sourceTree = "<group>"; };
@@ -111,8 +119,10 @@
 		AF7D85D82C18769400789739 /* Objects */ = {
 			isa = PBXGroup;
 			children = (
-				951F35762C2998070061DB17 /* chair_swan.usdz */,
-				951F35772C2998070061DB17 /* tv_retro.usdz */,
+				951F35762C2998070061DB17 /* Chair.usdz */,
+				9578CEF12C2BF5E3009BC720 /* Food.usdz */,
+				9578CF002C2BF7FD009BC720 /* Desk.usdz */,
+				951F35772C2998070061DB17 /* TV.usdz */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
@@ -124,6 +134,8 @@
 				AF7BE4D92C19908700A47958 /* ARObjectAnchor.swift */,
 				952E5C052C1C304400F30043 /* CommunicationController.swift */,
 				951F356F2C296D450061DB17 /* TrackedObject.swift */,
+				95BBAB462C2AF1D000CC960F /* SelectionMarker.swift */,
+				95BBAB442C2AE92900CC960F /* SelectableTrackedObject.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -211,11 +223,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				951F35792C2998070061DB17 /* tv_retro.usdz in Resources */,
+				951F35792C2998070061DB17 /* TV.usdz in Resources */,
+				9578CEF22C2BF5E3009BC720 /* Food.usdz in Resources */,
 				AF5DC4D72C17121800549312 /* Preview Assets.xcassets in Resources */,
 				AF5DC4D42C17121800549312 /* Assets.xcassets in Resources */,
 				95E16BCD2C201469002BDF6C /* prompts.plist in Resources */,
-				951F35782C2998070061DB17 /* chair_swan.usdz in Resources */,
+				951F35782C2998070061DB17 /* Chair.usdz in Resources */,
+				9578CF022C2BF7FD009BC720 /* Desk.usdz in Resources */,
 				AF3C9E172C1859B500C9332D /* ARViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -229,9 +243,11 @@
 			files = (
 				AF7D85D72C18756200789739 /* SettingsMenu.swift in Sources */,
 				AF7BE4DA2C19908700A47958 /* ARObjectAnchor.swift in Sources */,
+				95BBAB472C2AF1D000CC960F /* SelectionMarker.swift in Sources */,
 				AF7D85D52C18749700789739 /* ARObject.swift in Sources */,
 				951F35702C296D450061DB17 /* TrackedObject.swift in Sources */,
 				95BDC7262C240A760059A658 /* IndicatorView.swift in Sources */,
+				95BBAB452C2AE92900CC960F /* SelectableTrackedObject.swift in Sources */,
 				952E5C062C1C304400F30043 /* CommunicationController.swift in Sources */,
 				AF7D85D32C18730200789739 /* SelectObjectMenu.swift in Sources */,
 				AF5DC4D02C17121700549312 /* ProgettoApp.swift in Sources */,
