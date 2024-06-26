@@ -110,7 +110,14 @@ class ARManager: NSObject, ARSessionDelegate {
                     obj.indicatorView.width = sizeOfObjectOnScreen
                 }
             } else if let obj = obj as? SelectionMarker {
+                let aPos = anchor.transform.position
+                let cPos = frame.camera.transform.position
+                
+                let distanceSquared = (aPos.x - cPos.x) * (aPos.x - cPos.x) + (aPos.z - cPos.z) * (aPos.z - cPos.z)
+                let distance = sqrt(distanceSquared)
+                
                 obj.anchorEntity.look(at: frame.camera.transform.position, from: anchor.transform.position, relativeTo: nil)
+                obj.anchorEntity.transform.scale = SIMD3<Float>(repeating: 4 * distance)
             }
         }
         
@@ -206,11 +213,18 @@ class ARManager: NSObject, ARSessionDelegate {
         let arAnchor = ARAnchor(transform: transform)
         let anchorEntity = AnchorEntity(world: arAnchor.transform)
         
+        let aPos = transform.position
+        let cPos = arView.cameraTransform.translation
+        
+        let distanceSquared = (aPos.x - cPos.x) * (aPos.x - cPos.x) + (aPos.z - cPos.z) * (aPos.z - cPos.z)
+        let distance = sqrt(distanceSquared)
+        
         let obj = SelectionMarker(
             anchor: arAnchor,
             anchorEntity: anchorEntity,
             onScreen: true,
-            cameraPosition: arView.cameraTransform.translation
+            cameraPosition: arView.cameraTransform.translation,
+            distance: distance
         )
         objs[arAnchor.identifier] = obj
         
