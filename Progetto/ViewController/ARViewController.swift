@@ -80,6 +80,13 @@ class ARViewController: UIViewController {
     }
     
     private func initGestures() {
+        let oneFingerSingleTapGestureRecognizer = UITapGestureRecognizer(
+            target: self, action: #selector(didOneFingerSingleTap(sender:))
+        )
+        oneFingerSingleTapGestureRecognizer.numberOfTapsRequired = 1
+        oneFingerSingleTapGestureRecognizer.numberOfTouchesRequired = 1
+        arView.addGestureRecognizer(oneFingerSingleTapGestureRecognizer)
+        
         let oneFingerDoubleTapGestureRecognizer = UITapGestureRecognizer(
             target: self, action: #selector(didOneFingerDoubleTap(sender:))
         )
@@ -122,8 +129,8 @@ class ARViewController: UIViewController {
     }
     
     @objc
-    private func didOneFingerDoubleTap(sender: UITapGestureRecognizer) {
-        print("didOneFingerDoubleTap - Waiting selection: \(waitingSelection)")
+    private func didOneFingerSingleTap(sender: UITapGestureRecognizer) {
+        print("didOneFingerSingleTap - Waiting selection: \(waitingSelection)")
         
         guard waitingSelection else { return }
         
@@ -140,6 +147,13 @@ class ARViewController: UIViewController {
             print("Tapped on real world element")
             select(transform: pointTapped.worldTransform)
         }
+    }
+    
+    @objc
+    private func didOneFingerDoubleTap(sender: UITapGestureRecognizer) {
+        print("didOneFingerDoubleTap")
+        
+        synthesizer.pauseSpeaking(at: .immediate)
     }
     
     @objc
