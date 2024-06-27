@@ -24,7 +24,7 @@ struct ARViewControllerRepresentable: UIViewControllerRepresentable {
 struct ProgettoApp: App {
     var body: some Scene {
         WindowGroup {
-            ARViewControllerRepresentable()
+            ARViewControllerRepresentable().ignoresSafeArea()
         }
     }
 }

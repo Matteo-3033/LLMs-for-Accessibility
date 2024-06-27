@@ -21,9 +21,8 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <arView multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0c8-gu-RvY">
-                    <rect key="frame" x="0.0" y="0.0" width="393" height="759"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <arView multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0c8-gu-RvY">
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                 </arView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nos-ev-9OT" userLabel="Settings">
                     <rect key="frame" x="329.33333333333331" y="773" width="53.666666666666686" height="35"/>
@@ -78,8 +77,12 @@
                 <constraint firstItem="nos-ev-9OT" firstAttribute="leading" secondItem="KSd-cq-FQj" secondAttribute="trailing" constant="4" id="8gL-32-wCi"/>
                 <constraint firstItem="nos-ev-9OT" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" constant="-10" id="BuX-74-lDy"/>
                 <constraint firstItem="KSd-cq-FQj" firstAttribute="leading" secondItem="yPr-4P-3Pw" secondAttribute="trailing" constant="4" id="Ocq-Ns-Lnj"/>
+                <constraint firstItem="0c8-gu-RvY" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="ZsT-qh-0jX"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="KSd-cq-FQj" secondAttribute="bottom" constant="10" id="c6p-du-oJj"/>
+                <constraint firstAttribute="trailing" secondItem="0c8-gu-RvY" secondAttribute="trailing" id="ebe-F6-A5X"/>
+                <constraint firstItem="0c8-gu-RvY" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="iDL-oI-uea"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="yPr-4P-3Pw" secondAttribute="bottom" constant="10" id="pWI-gz-gH9"/>
+                <constraint firstAttribute="bottom" secondItem="0c8-gu-RvY" secondAttribute="bottom" id="rkG-zh-QFQ"/>
             </constraints>
             <point key="canvasLocation" x="136.64122137404578" y="19.718309859154932"/>
         </view>
