@@ -16,6 +16,7 @@ class ARViewController: UIViewController {
     private var objectToSpawn: ARObject?
     private var arManager: ARManager!
     
+    private var loading = false
     private let communication = CommunicationController()
     private let synthesizer = AVSpeechSynthesizer()
     
@@ -174,12 +175,14 @@ class ARViewController: UIViewController {
     @objc
     private func didTwoFingerSwipeUp(sender: UISwipeGestureRecognizer) {
         print("didTwoFingerSwipeUp")
+        guard !loading else { return }
         showQuestionsAlert()
     }
     
     @objc
     private func didTwoFingerSwipeDown(sender: UISwipeGestureRecognizer) {
         print("didTwoFingerSwipeDown: frame acquisition")
+        guard !loading else { return }
         
         arManager.currentFrame { frame in
             guard let frame else { return }
@@ -190,6 +193,7 @@ class ARViewController: UIViewController {
     @objc
     private func didTwoFingerSwipeLeft(sender: UISwipeGestureRecognizer) {
         print("didTwoFingerSwipeLeft: camera frame acquisition")
+        guard !loading else { return }
         
         arManager.currentCameraFrame { frame in
             guard let frame else { return }
@@ -200,6 +204,7 @@ class ARViewController: UIViewController {
     @objc
     private func didTwoFingerSwipeRight(sender: UISwipeGestureRecognizer) {
         print("didTwoFingerSwipeRight: AR frame acquisition")
+        guard !loading else { return }
         
         arManager.currentARFrame { frame in
             guard let frame else { return }
@@ -368,6 +373,8 @@ class ARViewController: UIViewController {
         
         guard let base64 = image.getBase64() else { return }
         
+        loading = true
+        
         print("Prompt: \(prompt)")
         communication.getDescription(
             text: prompt,
@@ -378,6 +385,8 @@ class ARViewController: UIViewController {
                 return
             }
             print("Description from LLM: \(text)")
+            
+            loading = false
             self.speak(text: text)
             
             self.session.append((
