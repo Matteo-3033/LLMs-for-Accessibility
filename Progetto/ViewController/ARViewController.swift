@@ -144,7 +144,7 @@ class ARViewController: UIViewController {
             allowing: .estimatedPlane,
             alignment: .any
         ).first {
-            print("Tapped on real world element")
+            print("Tapped on real world object")
             select(transform: pointTapped.worldTransform)
         }
     }
