@@ -120,19 +120,6 @@ class ARManager: NSObject, ARSessionDelegate {
                 obj.anchorEntity.transform.scale = SIMD3<Float>(repeating: 4 * distance)
             }
         }
-        
-        let width = UIScreen.main.bounds.size.width
-        
-        let size = frame.camera.imageResolution
-        // w e h invertite perché l'immagine deve essere ruotata
-        let height = width * size.width / size.height
-        
-        if width != arView.frame.size.width || height != arView.frame.size.height {
-            arView.frame.size = CGSize(width: width, height: height)
-            if let superview = arView.superview {
-                arView.center = superview.center
-            }
-        }
     }
     
     public func session(_ session: ARSession, didAdd anchors: [ARAnchor]) {

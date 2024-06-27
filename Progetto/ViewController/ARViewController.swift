@@ -386,7 +386,7 @@ class ARViewController: UIViewController {
             }
             print("Description from LLM: \(text)")
             
-            loading = false
+            self.loading = false
             self.speak(text: text)
             
             self.session.append((
