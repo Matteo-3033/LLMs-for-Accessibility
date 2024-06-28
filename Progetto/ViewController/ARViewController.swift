@@ -12,6 +12,8 @@ import ARKit
 class ARViewController: UIViewController {
     
     @IBOutlet weak var arView: ARView!
+    @IBOutlet weak var loadingView: UIView!
+    @IBOutlet weak var spinningWheel: UIActivityIndicatorView!
     
     private var objectToSpawn: ARObject?
     private var arManager: ARManager!
@@ -53,8 +55,14 @@ class ARViewController: UIViewController {
         }
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        loading = false
+        loadingView.isHidden = true
+        loadingView.layer.cornerRadius = 8
+        spinningWheel.startAnimating()
+        
         UIApplication.shared.isIdleTimerDisabled = true
         
         arManager = ARManager(arView: arView)
@@ -374,6 +382,7 @@ class ARViewController: UIViewController {
         guard let base64 = image.getBase64() else { return }
         
         loading = true
+        self.loadingView.isHidden = false
         
         print("Prompt: \(prompt)")
         communication.getDescription(
@@ -386,7 +395,11 @@ class ARViewController: UIViewController {
             }
             print("Description from LLM: \(text)")
             
-            self.loading = false
+            DispatchQueue.main.async {
+                self.loading = false
+                self.loadingView.isHidden = true
+            }
+            
             self.speak(text: text)
             
             self.session.append((

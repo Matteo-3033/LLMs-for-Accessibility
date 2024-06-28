@@ -5,6 +5,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
         <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -13,6 +14,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ARViewController" customModule="Progetto" customModuleProvider="target">
             <connections>
                 <outlet property="arView" destination="0c8-gu-RvY" id="jL5-sc-tSr"/>
+                <outlet property="loadingView" destination="P6s-RE-K1b" id="DiF-W5-7xV"/>
+                <outlet property="spinningWheel" destination="jB8-qr-rAr" id="iRT-yK-ObW"/>
                 <outlet property="view" destination="iN0-l3-epB" id="AbZ-lI-EQp"/>
             </connections>
         </placeholder>
@@ -24,6 +27,30 @@
                 <arView multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0c8-gu-RvY">
                     <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                 </arView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P6s-RE-K1b" userLabel="LoadingView">
+                    <rect key="frame" x="68.666666666666686" y="354" width="256" height="144"/>
+                    <subviews>
+                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="jB8-qr-rAr">
+                            <rect key="frame" x="109.33333333333333" y="29.666666666666686" width="36.999999999999986" height="37"/>
+                            <color key="color" name="AccentColor"/>
+                        </activityIndicatorView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please, don't move" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Shj-wC-8yc">
+                            <rect key="frame" x="55.666666666666657" y="85.666666666666686" width="144.66666666666666" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.70906491623711343" green="0.70906491623711343" blue="0.70906491623711343" alpha="0.75079719387755106" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstItem="Shj-wC-8yc" firstAttribute="centerX" secondItem="P6s-RE-K1b" secondAttribute="centerX" id="4jZ-bF-vxx"/>
+                        <constraint firstItem="jB8-qr-rAr" firstAttribute="centerX" secondItem="P6s-RE-K1b" secondAttribute="centerX" id="KSZ-nV-6YA"/>
+                        <constraint firstAttribute="height" constant="144" id="LKy-ZB-XmY"/>
+                        <constraint firstAttribute="width" constant="256" id="ad7-lQ-gOx"/>
+                        <constraint firstItem="jB8-qr-rAr" firstAttribute="centerY" secondItem="P6s-RE-K1b" secondAttribute="centerY" constant="-24" id="hRh-Dg-QhE"/>
+                        <constraint firstItem="Shj-wC-8yc" firstAttribute="centerY" secondItem="P6s-RE-K1b" secondAttribute="centerY" constant="24" id="j40-Pb-tI9"/>
+                    </constraints>
+                </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nos-ev-9OT" userLabel="Settings">
                     <rect key="frame" x="329.33333333333331" y="773" width="53.666666666666686" height="35"/>
                     <accessibility key="accessibilityConfiguration" label="Settings"/>
@@ -80,6 +107,8 @@
                 <constraint firstItem="0c8-gu-RvY" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="ZsT-qh-0jX"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="KSd-cq-FQj" secondAttribute="bottom" constant="10" id="c6p-du-oJj"/>
                 <constraint firstAttribute="trailing" secondItem="0c8-gu-RvY" secondAttribute="trailing" id="ebe-F6-A5X"/>
+                <constraint firstItem="P6s-RE-K1b" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="fRR-VU-biU"/>
+                <constraint firstItem="P6s-RE-K1b" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="hCs-sT-QIZ"/>
                 <constraint firstItem="0c8-gu-RvY" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="iDL-oI-uea"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="yPr-4P-3Pw" secondAttribute="bottom" constant="10" id="pWI-gz-gH9"/>
                 <constraint firstAttribute="bottom" secondItem="0c8-gu-RvY" secondAttribute="bottom" id="rkG-zh-QFQ"/>
@@ -91,6 +120,9 @@
         <image name="gear.circle.fill" catalog="system" width="128" height="123"/>
         <image name="plus.circle.fill" catalog="system" width="128" height="123"/>
         <image name="square.and.arrow.down.fill" catalog="system" width="121" height="128"/>
+        <namedColor name="AccentColor">
+            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
