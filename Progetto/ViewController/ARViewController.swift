@@ -46,9 +46,9 @@ class ARViewController: UIViewController {
         case background = "background"
         case foreground = "foreground"
         case obstacles = "obstacles"
+        case what = "what"
         case color = "color"
         case relationship = "relationship"
-        case what = "what"
         
         public func getPrompt(_ prompts: [String: Any]) -> [String] {
             return prompts[rawValue] as! [String]
