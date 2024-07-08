@@ -76,15 +76,8 @@ class ARManager: NSObject, ARSessionDelegate {
         objs.removeAll()
     }
     
-    private func updateObjAnchor(anchor: ARObjectAnchor, camera: ARCamera) {
-    }
-    
     public func session(_ session: ARSession, didUpdate frame: ARFrame) {
         frame.anchors.forEach { anchor in
-            if let objAnchor = anchor as? ARObjectAnchor {
-                updateObjAnchor(anchor: objAnchor, camera: frame.camera)
-            }
-            
             if let planeAnchor = anchor as? ARPlaneAnchor {
                 updatePlaneEntity(with: planeAnchor, in: arView, isEnabled: settings.showPlanes)
             }
