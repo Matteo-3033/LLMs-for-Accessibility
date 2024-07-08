@@ -7,3 +7,9 @@ This application leverages Large Language Models (specifically GPT-4o) as an acc
 [Project presentation](Presentation.pdf)
 
 [![Youtube demo preview](https://img.youtube.com/vi/qEaWN3SsycM/0.jpg)](https://www.youtube.com/watch?v=qEaWN3SsycM)
+
+<p align="center">
+  <a href="https://www.youtube.com/watch?v=qEaWN3SsycM">
+  <img src="https://img.youtube.com/vi/qEaWN3SsycM/0.jpg" alt="Youtube demo preview"/>
+  </a>
+</p>
