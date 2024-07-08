@@ -8,7 +8,7 @@
 import Foundation
 
 struct CommunicationController {
-    private static let API_KEY = "sk-proj-pnOaxK5PclXhjPrOGqTRT3BlbkFJPGhGv4jHrFVccEsfoQAe"
+    private static let API_KEY = "OPENAI API KEY HERE"
     private static let SERVER_URL = "https://api.openai.com"
         // "https://develop.ewlab.di.unimi.it/descripix"
     
